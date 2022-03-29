@@ -44,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = true;
         }
+
+        if (isGrounded == true)
+            animator.SetBool("IsGrounded", true);
+        else
+            animator.SetBool("IsGrounded", false);
+
+        Debug.Log(isGrounded);
+
     }
 
     void MovePlayer(float _horizontalMovement)

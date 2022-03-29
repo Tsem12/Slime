@@ -5,6 +5,7 @@ public class CameraFollow : MonoBehaviour
     public GameObject player;
     public float timeOffset;
     public Vector3 posOffset;
+    public GameObject GameManager;
 
     private Vector3 velocity;
 
@@ -12,5 +13,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + posOffset, ref velocity, timeOffset);
+        player = GameManager.GetComponent<GameManager>().ActiveCharacter;
     }
 }

@@ -138,7 +138,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1013,45 +1012,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Golem_DeathB_14: 2366027507675973488
-      Golem_DeathB_36: -1369729675749093880
-      Golem_DeathB_12: 8288141921684502821
-      Golem_DeathB_19: -855894426043920049
-      Golem_DeathB_28: 2031670608883766608
-      Golem_DeathB_8: 6714541083159884454
-      Golem_DeathB_7: -7816035844274932949
-      Golem_DeathB_0: -4473579293623174869
-      Golem_DeathB_22: -9023251284736293455
-      Golem_DeathB_24: 4927095488922702557
-      Golem_DeathB_27: -3088007447593805321
-      Golem_DeathB_9: -6017118051776825238
-      Golem_DeathB_20: -7258202556324459794
-      Golem_DeathB_25: 5191311709302587772
-      Golem_DeathB_21: 6335161581149853664
-      Golem_DeathB_4: 6404888611686114105
-      Golem_DeathB_18: 8101009047907486485
-      Golem_DeathB_15: -6822445787072063325
-      Golem_DeathB_35: -7720955828726479983
-      Golem_DeathB_6: -7094433738116752483
-      Golem_DeathB_23: 4782924082296039684
-      Golem_DeathB_31: -6466692231312445896
-      Golem_DeathB_1: 7617717501857141420
-      Golem_DeathB_26: -7957477029393819613
-      Golem_DeathB_29: -3937740914229108629
-      Golem_DeathB_2: -5911589883750756383
-      Golem_DeathB_11: -782282845687811951
-      Golem_DeathB_34: 4373300827568657354
-      Golem_DeathB_17: -2057170366176464270
-      Golem_DeathB_5: -1731013074565438536
-      Golem_DeathB_16: -5865987505820375150
-      Golem_DeathB_32: -2872179062749428332
-      Golem_DeathB_33: -4451281476657380998
-      Golem_DeathB_3: -1567718343883705094
-      Golem_DeathB_37: -3253079241725170808
-      Golem_DeathB_30: -6500374492418163105
-      Golem_DeathB_10: -1753290897975077983
-      Golem_DeathB_13: -5363732409053441820
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
