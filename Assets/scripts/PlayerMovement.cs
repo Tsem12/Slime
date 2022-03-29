@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,12 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
 
-    public AnimationClip jump;
-    Animation anim;
-
     private void Start()
     {
-        anim = GetComponent<Animation>();
 
     }
 
@@ -58,9 +55,17 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
-            anim.clip = jump;
-            anim.Play();
+            StartCoroutine(waiter());
         }
+
+
+    }
+
+    IEnumerator waiter()
+    {
+        animator.SetBool("Jump", true);
+        yield return new WaitForSeconds (1);
+        animator.SetBool("Jump", false);
     }
 
     void Flip(float _velocity)
@@ -73,4 +78,5 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+
 }
