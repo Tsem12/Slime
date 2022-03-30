@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsGrounded", true);
         else
             animator.SetBool("IsGrounded", false);
+        
 
     }
 
