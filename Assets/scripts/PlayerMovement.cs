@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask collisionLayers;
 
-    public float horizontalMovement;
+    private float horizontalMovement;
 
 
     void Update()
