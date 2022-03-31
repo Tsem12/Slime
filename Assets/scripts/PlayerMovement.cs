@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
+
         Flip(rb.velocity.x);
         float charactervelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", charactervelocity);
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         MovePlayer(horizontalMovement);
