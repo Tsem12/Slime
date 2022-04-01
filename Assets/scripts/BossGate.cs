@@ -6,12 +6,11 @@ public class BossGate : MonoBehaviour
 {
     [SerializeField] private GameObject triger;
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator animatorElevator;
 
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] private BoxCollider2D parentBc;
     [SerializeField] private bool isOpen;
-
-    private 
 
     void Start()
     {
@@ -40,9 +39,18 @@ public class BossGate : MonoBehaviour
             parentBc.GetComponent<BoxCollider2D>().enabled = false;
             }
 
+        StartCoroutine(ActiveElevator());
+
         }
-        
-        
+
+       
+    }
+
+    IEnumerator ActiveElevator()
+    {
+        animatorElevator.SetBool("SetActive", true);
+        yield return new WaitForSeconds(1);
+        animatorElevator.SetBool("Active", true);
     }
 }
 

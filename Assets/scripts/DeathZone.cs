@@ -27,11 +27,8 @@ public class DeathZone : MonoBehaviour
     IEnumerator Death()
     {
         animator = player.GetComponent<Animator>();
-        Debug.Log("cmarche1");
         animator.SetBool("Death", true);
-        Debug.Log("cmarche2");
         yield return new WaitForSeconds(0.3f);
-        Debug.Log("cmarche3");
         animator.SetBool("Death", false);
         player.transform.position = playerSpawn.position;
     }

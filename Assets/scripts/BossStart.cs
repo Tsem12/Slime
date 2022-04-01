@@ -5,12 +5,18 @@ using UnityEngine;
 public class BossStart : MonoBehaviour
 {
     public Animator animator;
-    public Renderer renderer;
+    [SerializeField] private GameObject boss;
     public Collider2D cl;
 
-    private void OnTriggerEnter(Collider other)
+
+    private void Start()
     {
-        if (other.CompareTag("Enemy"))
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
 
             Debug.Log("sddc");
@@ -21,7 +27,7 @@ public class BossStart : MonoBehaviour
 
         IEnumerator Init()
         {
-            renderer.enabled = true;
+            boss.SetActive(true);
             yield return new WaitForSeconds(1);
             animator.SetBool("Entery", true);
             yield return new WaitForSeconds(1);
