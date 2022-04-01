@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         ActiveCharacter.SetActive(true);
         charList.Remove(ActiveCharacter);
 
+
     }
 
     // Update is called once per frame

@@ -9,6 +9,7 @@ public class BossGate : MonoBehaviour
 
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] private BoxCollider2D parentBc;
+    [SerializeField] private bool isOpen;
 
     private 
 
@@ -23,11 +24,23 @@ public class BossGate : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        animator.SetBool("Open", true);
-        Debug.Log(" c bon");
-        parentBc.GetComponent<BoxCollider2D>().enabled = true;
+
+        if (collision.CompareTag("Player"))
+        {
+            if (isOpen == true)
+            {
+            animator.SetBool("Open", true);
+            parentBc.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            else
+            {
+            animator.SetBool("Open", true);
+            parentBc.GetComponent<BoxCollider2D>().enabled = false;
+            }
+
+        }
         
         
     }

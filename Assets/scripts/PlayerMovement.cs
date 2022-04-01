@@ -22,14 +22,16 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalMovement;
 
-
+    private void Awake()
+    {
+        
+    }
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isJumping = true;
         }
-
 
         Flip(rb.velocity.x);
         float charactervelocity = Mathf.Abs(rb.velocity.x);
@@ -46,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         MovePlayer(horizontalMovement);
