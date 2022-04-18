@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovementHuman : MonoBehaviour
+public class PlayerFlyMouvement1 : MonoBehaviour
 {
 
     public float moveSpeed;
@@ -21,11 +21,9 @@ public class PlayerMovementHuman : MonoBehaviour
     public LayerMask collisionLayers;
 
     private float horizontalMovement;
+    private bool canDoubbleJump;
 
-    private void Awake()
-    {
 
-    }
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -35,12 +33,14 @@ public class PlayerMovementHuman : MonoBehaviour
 
         Flip(rb.velocity.x);
         float charactervelocity = Mathf.Abs(rb.velocity.x);
-        animator.SetFloat("Speed", charactervelocity);
 
         if (isGrounded == true)
-            animator.SetBool("IsGrounded", true);
-        else
-            animator.SetBool("IsGrounded", false);
+        {
+            canDoubbleJump = true;
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true)
+            DoubbleJump();
 
 
     }
@@ -53,8 +53,9 @@ public class PlayerMovementHuman : MonoBehaviour
         MovePlayer(horizontalMovement);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
-    }
 
+
+    }
 
     void MovePlayer(float _horizontalMovement)
     {
@@ -71,12 +72,6 @@ public class PlayerMovementHuman : MonoBehaviour
 
     }
 
-    IEnumerator waiter()
-    {
-        animator.SetBool("Jump", true);
-        yield return new WaitForSeconds(1);
-        animator.SetBool("Jump", false);
-    }
 
     void Flip(float _velocity)
     {
@@ -96,4 +91,18 @@ public class PlayerMovementHuman : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
+    private void DoubbleJump()
+    {
+        rb.velocity = new Vector2(0.0f, 0.0f);
+
+        rb.AddForce(new Vector2(0f, jumpForce));
+        isJumping = false;
+        canDoubbleJump = false;
+        StartCoroutine(waiter());
+    }
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(1);
+    }
 }

@@ -39,11 +39,15 @@ public class GameManager : MonoBehaviour
 
     void ChangeCharacter()
     {
+        ActiveCharacter.GetComponent<Animator>().SetTrigger("SwitchIn");
+        StartCoroutine(waiter());
         charList.Add(ActiveCharacter);
         ActiveCharacter = charList[0];
         ActiveCharacter.SetActive(true);
         charList.Remove(ActiveCharacter);
         ActiveCharacter.transform.position = charList[charList.Count - 1].transform.position;
+        ActiveCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
+        StartCoroutine(waiter());
 
 
         foreach (GameObject character in charList)
@@ -53,6 +57,11 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(1);
     }
 
 

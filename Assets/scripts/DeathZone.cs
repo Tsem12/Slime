@@ -31,5 +31,6 @@ public class DeathZone : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("Death", false);
         player.transform.position = playerSpawn.position;
+        player.GetComponent<Animator>().SetTrigger("SwitchOut");
     }
 }

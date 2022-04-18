@@ -21,7 +21,6 @@ public class PlayerHumanMovement : MonoBehaviour
     public LayerMask collisionLayers;
 
     private float horizontalMovement;
-    private bool canDoubbleJump;
 
 
     void Update()
@@ -38,14 +37,9 @@ public class PlayerHumanMovement : MonoBehaviour
         if (isGrounded == true)
         {
             animator.SetBool("IsGrounded", true);
-            canDoubbleJump = true;
         }
         else
             animator.SetBool("IsGrounded", false);
-
-        if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true)
-            DoubbleJump();
-
 
     }
 
@@ -95,20 +89,11 @@ public class PlayerHumanMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
-    private void DoubbleJump()
-    {
-        rb.velocity = new Vector2(0.0f, 0.0f);
-
-        rb.AddForce(new Vector2(0f, jumpForce));
-        isJumping = false;
-        canDoubbleJump = false;
-        StartCoroutine(waiter());
-    }
-
     IEnumerator waiter()
     {
         animator.SetBool("Jump", true);
         yield return new WaitForSeconds(1);
         animator.SetBool("Jump", false);
     }
+
 }

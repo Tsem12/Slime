@@ -1,14 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerRenfMovement : MonoBehaviour
+public class PlayerRenfMouvement : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float jumpForce;
 
-    private bool isJumping;
-    public bool isGrounded;
 
     public Rigidbody2D rb;
     public Animator animator;
@@ -32,12 +29,6 @@ public class PlayerRenfMovement : MonoBehaviour
         float charactervelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", charactervelocity);
 
-        if (isGrounded == true)
-            animator.SetBool("IsGrounded", true);
-        else
-            animator.SetBool("IsGrounded", false);
-
-
     }
 
 
@@ -47,7 +38,6 @@ public class PlayerRenfMovement : MonoBehaviour
 
         MovePlayer(horizontalMovement);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
     }
 
 
