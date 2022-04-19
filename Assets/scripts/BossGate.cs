@@ -6,7 +6,6 @@ public class BossGate : MonoBehaviour
 {
     [SerializeField] private GameObject triger;
     [SerializeField] private Animator animator;
-    [SerializeField] private Animator animatorElevator;
 
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] private BoxCollider2D parentBc;
@@ -48,9 +47,7 @@ public class BossGate : MonoBehaviour
 
     IEnumerator ActiveElevator()
     {
-        animatorElevator.SetBool("SetActive", true);
         yield return new WaitForSeconds(1);
-        animatorElevator.SetBool("Active", true);
     }
 }
 

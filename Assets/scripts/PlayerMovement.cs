@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        MovePlayer(horizontalMovement);
+        if (GameManager.isInputEnable == true)
+            MovePlayer(horizontalMovement);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
     }
@@ -83,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;
+
         }else if(_velocity < -0.1f)
         {
             spriteRenderer.flipX = true;

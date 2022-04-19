@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> charList;
     public GameObject ActiveCharacter;
     public static GameManager instance;
+    public static bool isInputEnable = true;
 
     private void Awake()
     {
@@ -39,30 +40,29 @@ public class GameManager : MonoBehaviour
 
     void ChangeCharacter()
     {
-        ActiveCharacter.GetComponent<Animator>().SetTrigger("SwitchIn");
         StartCoroutine(waiter());
+        foreach (GameObject character in charList)
+        {
+            character.SetActive(false);
+
+        }
+    }
+
+    IEnumerator waiter()
+    {
+        GameManager.isInputEnable = false;
         charList.Add(ActiveCharacter);
         ActiveCharacter = charList[0];
         ActiveCharacter.SetActive(true);
         charList.Remove(ActiveCharacter);
         ActiveCharacter.transform.position = charList[charList.Count - 1].transform.position;
         ActiveCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
-        StartCoroutine(waiter());
-
-
-        foreach (GameObject character in charList)
-        {
-            character.SetActive(false);
-
-        }
-
+        yield return new WaitForSeconds(0.4f);
+        GameManager.isInputEnable = true;
 
     }
 
-    IEnumerator waiter()
-    {
-        yield return new WaitForSeconds(1);
-    }
+
 
 
 }

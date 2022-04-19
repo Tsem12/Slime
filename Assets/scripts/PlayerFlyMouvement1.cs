@@ -39,7 +39,7 @@ public class PlayerFlyMouvement1 : MonoBehaviour
             canDoubbleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true)
+        if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true && GameManager.isInputEnable == true)
             DoubbleJump();
 
 
@@ -50,7 +50,8 @@ public class PlayerFlyMouvement1 : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        MovePlayer(horizontalMovement);
+        if (GameManager.isInputEnable == true)
+            MovePlayer(horizontalMovement);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
 
@@ -93,7 +94,7 @@ public class PlayerFlyMouvement1 : MonoBehaviour
 
     private void DoubbleJump()
     {
-        rb.velocity = new Vector2(0.0f, 0.0f);
+        rb.velocity = new Vector2(rb.velocity.x, 0.0f);
 
         rb.AddForce(new Vector2(0f, jumpForce));
         isJumping = false;

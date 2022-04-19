@@ -21,6 +21,12 @@ public class PlayerHumanMovement : MonoBehaviour
     public LayerMask collisionLayers;
 
     private float horizontalMovement;
+    private BoxCollider2D atkHitBox;
+
+    private void Start()
+    {
+        atkHitBox = gameObject.GetComponent<BoxCollider2D>();
+    }
 
 
     void Update()
@@ -48,7 +54,8 @@ public class PlayerHumanMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        MovePlayer(horizontalMovement);
+        if (GameManager.isInputEnable == true)
+            MovePlayer(horizontalMovement);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
 
@@ -76,10 +83,12 @@ public class PlayerHumanMovement : MonoBehaviour
         if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;
+            atkHitBox.offset = new Vector2(0.517123f, atkHitBox.offset.y);
         }
         else if (_velocity < -0.1f)
         {
             spriteRenderer.flipX = true;
+            atkHitBox.offset = new Vector2(-0.517123f, atkHitBox.offset.y);
         }
     }
 
@@ -88,6 +97,7 @@ public class PlayerHumanMovement : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
+
 
     IEnumerator waiter()
     {

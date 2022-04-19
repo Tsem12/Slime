@@ -8,6 +8,7 @@ public class DeathZone : MonoBehaviour
     private Transform playerSpawn;
     private GameObject player;
     private Animator animator;
+
     private void Awake()
     {
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;

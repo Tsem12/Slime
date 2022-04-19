@@ -36,7 +36,8 @@ public class PlayerRenfMouvement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        MovePlayer(horizontalMovement);
+        if (GameManager.isInputEnable == true)
+            MovePlayer(horizontalMovement);
 
     }
 
