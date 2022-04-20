@@ -47,8 +47,6 @@ GameObject:
   - component: {fileID: 7447715258520145757}
   - component: {fileID: 7447715258520145758}
   - component: {fileID: 8195886405295933909}
-  - component: {fileID: 6177775232707089213}
-  - component: {fileID: 8879483805359466289}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Enemy
@@ -197,43 +195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 20
   animator: {fileID: 7447715258520145756}
---- !u!50 &6177775232707089213
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7447715258520145752}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 23b40af0fb51d414ca74e6369d7b3a1a, type: 2}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!70 &8879483805359466289
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7447715258520145752}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005495435, y: -0.11374939}
-  m_Size: {x: 0.36261013, y: 0.7255214}
-  m_Direction: 0
 --- !u!1 &7447715258780485053
 GameObject:
   m_ObjectHideFlags: 0
