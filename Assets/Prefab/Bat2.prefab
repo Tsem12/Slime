@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6908943914646426189}
   - component: {fileID: 4087832996515477566}
   - component: {fileID: 4087832996515477553}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 6908943915508301965}
   - component: {fileID: 6908943915508301966}
   - component: {fileID: 1039808394609124341}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Enemy
   m_Icon: {fileID: 0}

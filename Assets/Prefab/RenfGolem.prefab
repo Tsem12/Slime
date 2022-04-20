@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 612547931507308410}
   - component: {fileID: 612547931507308409}
   - component: {fileID: 4641430293097929787}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 612547932490851770}
   - component: {fileID: 8060225659364986825}
   - component: {fileID: 8060225659364986822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RenfGolem
   m_TagString: Enemy
   m_Icon: {fileID: 0}

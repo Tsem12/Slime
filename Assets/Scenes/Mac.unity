@@ -38997,11 +38997,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6119179207235943654, guid: 89073db156a8ee84fbed7fbd075f8107, type: 3}
   m_PrefabInstance: {fileID: 1542959019849449025}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1498996545 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7447715258520145757, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
-  m_PrefabInstance: {fileID: 2661059139874807680}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1498996546 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7447715258520145756, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
@@ -41740,6 +41735,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1980684064}
     m_Modifications:
+    - target: {fileID: 1859034776792103253, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687371591833905512, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_Size.x
+      value: 0.553359
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687371591833905512, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7561149
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687371591833905512, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0032491721
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687371591833905512, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.12153618
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687371591833905512, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7447715257528180125, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -41804,6 +41823,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7447715258520145757, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7447715258520145759, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.45300087
@@ -41831,7 +41854,7 @@ PrefabInstance:
     - target: {fileID: 8195886405295933909, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
       propertyPath: boxCollider
       value: 
-      objectReference: {fileID: 1498996545}
+      objectReference: {fileID: 0}
     - target: {fileID: 8195886405295933909, guid: 94f75ec62b4100241b4e7bd070387289, type: 3}
       propertyPath: objectToDestroy
       value: 
