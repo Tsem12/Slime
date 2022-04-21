@@ -9,29 +9,18 @@ public class DeathZone : MonoBehaviour
     private GameObject player;
     private Animator animator;
 
-    private void Awake()
-    {
-        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player");
+            animator = player.GetComponent<Animator>();
             player.GetComponent<Rigidbody2D>().freezeRotation = true;
-            StartCoroutine(Death());
+            animator.SetTrigger("Death");
         }
 
         
     }
 
-    IEnumerator Death()
-    {
-        animator = player.GetComponent<Animator>();
-        animator.SetBool("Death", true);
-        yield return new WaitForSeconds(0.3f);
-        animator.SetBool("Death", false);
-        player.transform.position = playerSpawn.position;
-        player.GetComponent<Animator>().SetTrigger("SwitchOut");
-    }
 }

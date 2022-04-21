@@ -47,19 +47,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded == true)
         {
-<<<<<<< Updated upstream
-            animator.SetBool("IsGrounded", true);
-=======
             canDoubbleJump = true;
             animator.SetBool("IsGrounded", true);
         }
         else
         {
             animator.SetBool("IsGrounded", false);
->>>>>>> Stashed changes
         }
-        else
-            animator.SetBool("IsGrounded", false);
 
         if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true && GameManager.isInputEnable == true && isFly == true)
             DoubbleJump();

@@ -20,7 +20,7 @@ public class CheckPoint : MonoBehaviour
     private void Update()
     {
         if (playerSpawn.position == transform.position)
-            StartCoroutine(waiter());
+            animator.SetBool("Active", true);
         else
         {
             animator.SetBool("Active", false);
@@ -37,10 +37,8 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
-    IEnumerator waiter()
+    void SwitchCp()
     {
-        animator.SetBool("Active", true);
-        yield return new WaitForSeconds(1.5f);
         cpActive.SetActive(true);
         cpInActive.SetActive(false);
     }
