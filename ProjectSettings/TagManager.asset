@@ -8,6 +8,7 @@ TagManager:
   - PlayerSpawn
   - Enemy
   - PlayerManager
+  - WayPoint
   layers:
   - Default
   - TransparentFX
