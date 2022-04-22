@@ -7,6 +7,7 @@ TagManager:
   - Trap
   - PlayerSpawn
   - Enemy
+  - PlayerManager
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - NoCollision
   - Enemy
-  - 
+  - PlayerManager
   - 
   - 
   - 

@@ -8,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private bool canDamage;
     private EnemyHealth enemyTarget;
+    public Rigidbody2D rb;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         GameManager.isInputEnable = false;
         isAttacking = true;
+        rb.velocity = new Vector2(0.0f, 0.0f);
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
@@ -38,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(canDamage == true)
         {
-            enemyTarget.TakeDamage(1);
+            enemyTarget.TakeDamage(10);
             enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(1.5f, 1.5f);
         }
     }

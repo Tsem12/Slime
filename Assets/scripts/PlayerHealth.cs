@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private Transform playerSpawn;
-    private Animator animator;
-    private void Awake()
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+    void Start()
     {
-        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn").transform;
-        animator = gameObject.GetComponent<Animator>();
+        currentHealth = maxHealth;
+        healthBar.SetMawHealth(maxHealth);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            TakeDamage(20);
+        }
+
     }
 
-    void Death()
+    void TakeDamage(int damage)
     {
-        gameObject.transform.position = playerSpawn.position;
-        animator.SetTrigger("SwitchOut");
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().StartDeath();
+
     }
+
 }

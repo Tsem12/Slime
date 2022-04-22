@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7912567}
   - component: {fileID: 7912573}
+  - component: {fileID: 7912576}
   - component: {fileID: 7912571}
   - component: {fileID: 7912568}
   - component: {fileID: 7912569}
@@ -341,6 +342,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7912575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93f7bc63db84e799a1ef450c6e4dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7912576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,6 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91526084}
   - component: {fileID: 91526090}
+  - component: {fileID: 91526093}
   - component: {fileID: 91526089}
   - component: {fileID: 91526087}
   - component: {fileID: 91526086}
@@ -762,6 +776,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &91526092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91526083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93f7bc63db84e799a1ef450c6e4dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91526093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2658,13 +2684,13 @@ GameObject:
   m_Component:
   - component: {fileID: 391884949}
   - component: {fileID: 391884948}
+  - component: {fileID: 391884951}
   - component: {fileID: 391884946}
   - component: {fileID: 391884945}
   - component: {fileID: 391884943}
   - component: {fileID: 391884944}
   - component: {fileID: 391884950}
   - component: {fileID: 391884947}
-  - component: {fileID: 391884951}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4468,6 +4494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 674774160}
   - component: {fileID: 674774166}
+  - component: {fileID: 674774169}
   - component: {fileID: 674774165}
   - component: {fileID: 674774164}
   - component: {fileID: 674774162}
@@ -4671,6 +4698,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &674774168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674774159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93f7bc63db84e799a1ef450c6e4dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &674774169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42000,9 +42039,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104440671}
+  - component: {fileID: 2104440672}
   m_Layer: 0
   m_Name: Players
-  m_TagString: Untagged
+  m_TagString: PlayerManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42025,6 +42065,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104440672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104440670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61dcd0702f491940a68059c203104c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 2107416051}
 --- !u!1 &2107416048
 GameObject:
   m_ObjectHideFlags: 0
@@ -42125,9 +42180,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2107416048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb93f7bc63db84e799a1ef450c6e4dce, type: 3}
+  m_Script: {fileID: 11500000, guid: e5198433bad22a3428449a59cac9424e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 2107416050}
 --- !u!1 &2128103296
 GameObject:
   m_ObjectHideFlags: 0
