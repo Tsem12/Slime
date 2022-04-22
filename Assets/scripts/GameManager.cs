@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool isInputEnable = true;
 
+
+
     private void Awake()
     {
         if (instance != null)
@@ -31,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isInputEnable == true)
+        if (Input.GetKeyDown(KeyCode.E) && isInputEnable == true && GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().isGrounded == true)
         {
             ChangeCharacter();
         }

@@ -8,10 +8,12 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private bool canDamage;
     private EnemyHealth enemyTarget;
+    public Rigidbody2D rb;
 
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        isAttacking = false;
     }
 
     void Update()
@@ -24,10 +26,13 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
+        GameManager.isInputEnable = false;
         isAttacking = true;
+        rb.velocity = new Vector2(0.0f, 0.0f);
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
+        GameManager.isInputEnable = true;
 
     }
 
@@ -36,7 +41,10 @@ public class PlayerAttack : MonoBehaviour
         if(canDamage == true)
         {
             enemyTarget.TakeDamage(10);
-            enemyTarget.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(10f, 10f);
+            //if (rb.velocity.x > Mathf.Epsilon)
+                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(1.5f, 0f);
+           // else
+                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(-1.5f, 0f);
         }
     }
 
@@ -44,15 +52,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            enemyTarget = collision.GetComponent<EnemyHealth>();
+            enemyTarget = collision.GetComponentInParent<EnemyHealth>();
             canDamage = true;
         } else
         {
             canDamage = false;
         }
-
-    
-
 
     }
 }

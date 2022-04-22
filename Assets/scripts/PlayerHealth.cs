@@ -1,18 +1,36 @@
-using System.Collections;
+33using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        healthBar.SetMawHealth(maxHealth);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        Debug.Log("camsaoul");
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            TakeDamage(20);
+        }
+
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().StartDeath();
+
+    }
+
 }

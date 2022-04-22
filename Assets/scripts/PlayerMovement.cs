@@ -36,17 +36,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded && isRenf == false)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isJumping = true;
         }
 
         Flip(rb.velocity.x);
         float charactervelocity = Mathf.Abs(rb.velocity.x);
+        animator.SetFloat("Speed", charactervelocity);
 
         if (isGrounded == true)
         {
             canDoubbleJump = true;
+            animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            animator.SetBool("IsGrounded", false);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true && GameManager.isInputEnable == true && isFly == true)
