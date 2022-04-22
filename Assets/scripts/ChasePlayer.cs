@@ -21,18 +21,15 @@ public class ChasePlayer : MonoBehaviour
             RaycastHit2D hitLeft = Physics2D.Raycast(mob.position, Vector2.left);
             RaycastHit2D hitRight = Physics2D.Raycast(mob.position, Vector2.left);
 
-            Debug.Log(hitLeft);
 
 
             if (hitLeft == player)
             {
-                Debug.Log("test");
                 //rb.velocity = new Vector2(chaseSpeed, 0);
                 //transform.localScale = new Vector2(1, 1);
             }
             else
             {
-                Debug.Log("test2");
                 //rb.velocity = new Vector2(-chaseSpeed, 0);
                 //transform.localScale = new Vector2(-1, 1);
             }

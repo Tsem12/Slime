@@ -41,10 +41,10 @@ public class PlayerAttack : MonoBehaviour
         if(canDamage == true)
         {
             enemyTarget.TakeDamage(10);
-            if (rb.velocity.x > Mathf.Epsilon)
-                enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(1.5f, 0f);
-            else
-                enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(-1.5f, 0f);
+            //if (rb.velocity.x > Mathf.Epsilon)
+                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(1.5f, 0f);
+           // else
+                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(-1.5f, 0f);
         }
     }
 
