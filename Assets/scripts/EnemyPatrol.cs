@@ -11,6 +11,7 @@ public class EnemyPatrol : MonoBehaviour
     public SpriteRenderer graphics;
     private Transform target;
     private int destPoint = 0;
+    public bool isDead = false;
 
     void Start()
     {
@@ -21,13 +22,19 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) < 0.3f)
+        if (!isDead)
         {
-            destPoint = (destPoint + 1) % waypoints.Length;
-            target = waypoints[destPoint];
-            graphics.flipX = !graphics.flipX;
+            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+            if(Vector3.Distance(transform.position, target.position) < 0.3f)
+            {
+                destPoint = (destPoint + 1) % waypoints.Length;
+                target = waypoints[destPoint];
+                graphics.flipX = !graphics.flipX;
+            }
         }
+        
+
+        
     }
 }

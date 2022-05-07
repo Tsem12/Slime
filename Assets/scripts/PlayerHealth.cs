@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;
     void Start()
     {
+  
         currentHealth = maxHealth;
         healthBar.SetMawHealth(maxHealth);
     }
@@ -17,7 +18,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("camsaoul");
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            TakeDamage(20);
+        }
+
     }
 
     public void TakeDamage(int damage)
