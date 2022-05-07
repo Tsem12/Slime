@@ -17,11 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            TakeDamage(20);
-        }
-
+        Debug.Log("camsaoul");
     }
 
     public void TakeDamage(int damage)
