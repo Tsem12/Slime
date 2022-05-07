@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private bool isAttacking;
     private Animator animator;
-    private bool canDamage;
+    public bool canDamage;
     private EnemyHealth enemyTarget;
     public Rigidbody2D rb;
 

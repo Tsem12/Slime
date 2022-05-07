@@ -444,6 +444,7 @@ MonoBehaviour:
   - {fileID: 6908943915418751517}
   - {fileID: 6908943915349412460}
   graphics: {fileID: 6908943915508301955}
+  isDead: 0
 --- !u!114 &1039808394609124341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 20
   animator: {fileID: 6908943915508301964}
-  isAlive: 1
 --- !u!1 &7732345401897441469
 GameObject:
   m_ObjectHideFlags: 0

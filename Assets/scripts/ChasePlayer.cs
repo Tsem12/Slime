@@ -17,6 +17,7 @@ public class ChasePlayer : MonoBehaviour
             rb = GetComponentInChildren<Rigidbody2D>();
             player = GameObject.FindGameObjectWithTag("Player");
             GetComponentInChildren<EnemyPatrol>().enabled = false;
+            Debug.Log("attack");
 
             RaycastHit2D hitLeft = Physics2D.Raycast(mob.position, Vector2.left);
             RaycastHit2D hitRight = Physics2D.Raycast(mob.position, Vector2.left);

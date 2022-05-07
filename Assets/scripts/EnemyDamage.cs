@@ -21,7 +21,6 @@ public class EnemyDamage : MonoBehaviour
         if (collision.CompareTag("Player") && isAttacking == false && !isDead)
         {
             StartCoroutine(Damage());
-            Debug.Log("qjlsdf");
         }
 
     }

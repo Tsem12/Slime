@@ -222,6 +222,7 @@ MonoBehaviour:
   - {fileID: 4879195690313943266}
   - {fileID: 4879195690369650835}
   graphics: {fileID: 4879195690160233084}
+  isDead: 0
 --- !u!114 &6764724211749582380
 MonoBehaviour:
   m_ObjectHideFlags: 0
