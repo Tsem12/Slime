@@ -1,4 +1,4 @@
-33using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;
     void Start()
     {
+  
         currentHealth = maxHealth;
         healthBar.SetMawHealth(maxHealth);
     }

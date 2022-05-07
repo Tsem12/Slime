@@ -18,8 +18,6 @@ public class BossStart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
-            Debug.Log("sddc");
             StartCoroutine(Init());
             
         }
