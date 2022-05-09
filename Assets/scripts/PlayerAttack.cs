@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public bool isAttacking;
-    private Animator animator;
     private bool canDamage;
     private EnemyHealth enemyTarget;
     public Rigidbody2D rb;
+    public SwitchCharacter switchCharacter;
 
     void Start()
     {
-        animator = gameObject.GetComponent<Animator>();
         isAttacking = false;
     }
 
@@ -29,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
         GameManager.isInputEnable = false;
         isAttacking = true;
         rb.velocity = new Vector2(0.0f, 0.0f);
-        animator.SetTrigger("Attack");
+        switchCharacter.activeCharacter.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
         GameManager.isInputEnable = true;

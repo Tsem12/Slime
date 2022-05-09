@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwitchManager : MonoBehaviour
 {
+    public SwitchCharacter switchCharacter;
 
 
     public void DisableInputOn()
@@ -16,10 +17,6 @@ public class SwitchManager : MonoBehaviour
         GameManager.isInputEnable = true;
     }
 
-    public void Transition()
-    {
-        this.GetComponent<Animator>().SetTrigger("SwitchOut");
-    }
 
     
 }
