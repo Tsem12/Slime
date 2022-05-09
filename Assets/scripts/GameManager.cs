@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject ActiveCharacter;
     public static GameManager instance;
     public static bool isInputEnable = true;
+    public GameObject selectionWeel;
 
 
 
@@ -37,7 +39,17 @@ public class GameManager : MonoBehaviour
         {
             ChangeCharacter();
         }
-           
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            selectionWeel.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            selectionWeel.SetActive(false);
+        }
+
     }
 
     void ChangeCharacter()

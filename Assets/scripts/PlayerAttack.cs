@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private bool isAttacking;
+    public bool isAttacking;
     private Animator animator;
-    public bool canDamage;
+    private bool canDamage;
     private EnemyHealth enemyTarget;
     public Rigidbody2D rb;
 
