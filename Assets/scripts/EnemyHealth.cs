@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using TMPro;
 public class EnemyHealth : MonoBehaviour
 {
     public int enemyHealth;
