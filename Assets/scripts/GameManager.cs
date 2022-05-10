@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool isInputEnable = true;
     public GameObject selectionWeel;
+    public PlayerAttack playerAttack;
+    public SwitchCharacter switchCharacter;
 
 
 
@@ -24,11 +26,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             selectionWeel.SetActive(true);
+            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
+            Time.timeScale = 0.1f;
         }
 
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             selectionWeel.SetActive(false);
+            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
+            Time.timeScale = 1f;
         }
 
     }

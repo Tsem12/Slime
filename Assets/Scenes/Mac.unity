@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7912567
 Transform:
   m_ObjectHideFlags: 0
@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   rb: {fileID: 7912571}
+  canAttack: 1
 --- !u!114 &7912575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &91526084
 Transform:
   m_ObjectHideFlags: 0
@@ -952,6 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   rb: {fileID: 91526089}
+  canAttack: 1
 --- !u!114 &91526092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionWeel: {fileID: 563440260}
+  playerAttack: {fileID: 0}
+  switchCharacter: {fileID: 1411004116}
 --- !u!4 &213066424
 Transform:
   m_ObjectHideFlags: 0
@@ -3088,6 +3092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   rb: {fileID: 391884946}
+  canAttack: 1
 --- !u!212 &391884948
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4807,7 +4812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &674774160
 Transform:
   m_ObjectHideFlags: 0
@@ -4998,6 +5003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 1
   rb: {fileID: 674774165}
+  canAttack: 1
 --- !u!114 &674774168
 MonoBehaviour:
   m_ObjectHideFlags: 0

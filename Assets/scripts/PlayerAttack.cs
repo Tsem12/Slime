@@ -5,19 +5,22 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public bool isAttacking;
+    private Animator animator;
     private bool canDamage;
     private EnemyHealth enemyTarget;
     public Rigidbody2D rb;
-    public SwitchCharacter switchCharacter;
+    public bool canAttack = true;
 
-    void Start()
+    void Awake()
     {
+        animator = gameObject.GetComponent<Animator>();
         isAttacking = false;
+        canAttack = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false)
+        if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false && canAttack == true)
         {
             StartCoroutine(Attack());
         }
@@ -28,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
         GameManager.isInputEnable = false;
         isAttacking = true;
         rb.velocity = new Vector2(0.0f, 0.0f);
-        switchCharacter.activeCharacter.GetComponent<Animator>().SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
         GameManager.isInputEnable = true;
