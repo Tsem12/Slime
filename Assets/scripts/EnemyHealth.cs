@@ -22,8 +22,9 @@ public class EnemyHealth : MonoBehaviour
         if (enemyHealth <= 0)
         {
             animator.SetBool("Death", true);
-            gameObject.GetComponent<EnemyPatrol>().isDead = true;
-            gameObject.GetComponentInChildren<EnemyDamage>().enabled = false;
+            this.GetComponent<EnemyPatrol>().isDead = true;
+            this.GetComponentInChildren<EnemyDamage>().enabled = false;
+            this.GetComponentInChildren<AbsorptionEnemy>().enabled = true;
 
         }
     }

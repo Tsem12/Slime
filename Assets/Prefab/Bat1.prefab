@@ -140,9 +140,10 @@ GameObject:
   - component: {fileID: 7959957589499842372}
   - component: {fileID: 9126803206486620270}
   - component: {fileID: 8358919263603320023}
+  - component: {fileID: 7400478710390366340}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +201,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7447715258520145756}
+--- !u!114 &7400478710390366340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6497354140908085851}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809bb780cd1744fd38a5717904f76631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7447715257528180126
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +371,7 @@ MonoBehaviour:
   - {fileID: 7447715258967268813}
   - {fileID: 7447715258780485052}
   graphics: {fileID: 7447715258520145747}
+  isDead: 0
 --- !u!114 &8195886405295933909
 MonoBehaviour:
   m_ObjectHideFlags: 0
