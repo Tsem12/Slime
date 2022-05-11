@@ -9,18 +9,15 @@ public class TrapPlatform : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] private BoxCollider2D trigerArea;
-    void FixedUpdate()
-    {
-        
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-        bc.enabled = false;
-        rb.constraints = RigidbodyConstraints2D.None;
-        Destroy(parent, 2);
+            bc.enabled = false;
+            rb.constraints = RigidbodyConstraints2D.None;
+            Destroy(parent, 2);
         }
     }
 }
