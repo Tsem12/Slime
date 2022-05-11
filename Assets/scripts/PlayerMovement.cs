@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed;
     public float jumpForce;
+    public float airResistance;
 
     private bool isJumping;
     public bool isGrounded;
@@ -26,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask collisionLayers;
 
     private float horizontalMovement;
-    private bool canDoubbleJump;
+    //private bool canDoubbleJump;
+    private bool canPlane = true;
     private BoxCollider2D atkHitBox;
 
     private void Start()
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButton("Jump") && isGrounded)
         {
             isJumping = true;
         }
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded == true)
         {
-            canDoubbleJump = true;
+            //canDoubbleJump = true;
             animator.SetBool("IsGrounded", true);
         }
         else
@@ -55,8 +57,13 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsGrounded", false);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded == false && canDoubbleJump == true && GameManager.isInputEnable == true && isFly == true)
-            DoubbleJump();
+        if (Input.GetButton("Jump") && isGrounded == false && canPlane == true && GameManager.isInputEnable == true && isFly == true)
+        {
+            /*Plane();
+            Debug.Log("plane");
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;*/
+
+        }
 
 
     }
@@ -110,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
-    private void DoubbleJump()
+    /*private void DoubbleJump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0.0f);
 
@@ -118,7 +125,13 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         canDoubbleJump = false;
         StartCoroutine(waiter());
-    }
+    } */
+
+    /*private void Plane()
+    {
+        rb.AddForce(new Vector2(rb.velocity.x, airResistance));
+    }*/
+
 
     IEnumerator waiter()
     {
