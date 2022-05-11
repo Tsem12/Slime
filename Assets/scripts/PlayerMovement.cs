@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float airResistance;
 
-    private bool isJumping;
     public bool isGrounded;
     public bool isSlime;
     public bool isHuman;
@@ -30,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     //private bool canDoubbleJump;
     private bool canPlane = true;
     private BoxCollider2D atkHitBox;
+    private bool isJumping;
 
     private void Start()
     {
@@ -38,9 +38,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Jump") && isGrounded)
+        
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            animator.SetTrigger("Jump");
             isJumping = true;
+            canPlane = false;
         }
 
         Flip(rb.velocity.x);
@@ -52,6 +56,13 @@ public class PlayerMovement : MonoBehaviour
             //canDoubbleJump = true;
             animator.SetBool("IsGrounded", true);
         }
+
+        /*if (isGrounded == true && isJumping == true)
+        {
+            animator.SetBool("IsGrounded", true);
+            isJumping=false;
+        }*/
+
         else
         {
             animator.SetBool("IsGrounded", false);
@@ -59,12 +70,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButton("Jump") && isGrounded == false && canPlane == true && GameManager.isInputEnable == true && isFly == true)
         {
-            /*Plane();
-            Debug.Log("plane");
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;*/
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-
+        if (Input.GetButtonUp("Jump"))
+        {
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
 
     }
 
@@ -90,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
-            StartCoroutine(waiter());
         }
 
 
@@ -127,16 +140,14 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(waiter());
     } */
 
-    /*private void Plane()
+    private void Plane()
     {
-        rb.AddForce(new Vector2(rb.velocity.x, airResistance));
-    }*/
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
 
 
-    IEnumerator waiter()
+    public void EndJump()
     {
-        animator.SetBool("Jump", true);
-        yield return new WaitForSeconds(1);
-        animator.SetBool("Jump", false);
+        canPlane = true;
     }
 }
