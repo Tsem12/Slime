@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    public float attackBoxPos;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -30,10 +29,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canPlane = true;
     private BoxCollider2D atkHitBox;
     private bool isJumping;
+    private float attackBoxPos;
 
     private void Start()
     {
         atkHitBox = gameObject.GetComponent<BoxCollider2D>();
+        attackBoxPos = this.GetComponent<BoxCollider2D>().offset.x;
     }
 
     void Update()
@@ -112,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip(float _velocity)
     {
+        
+
         if (_velocity > 0.1f)
         {
             spriteRenderer.flipX = false;

@@ -10,6 +10,9 @@ TagManager:
   - PlayerManager
   - WayPoint
   - platform
+  - Golem
+  - Fly
+  - Destroyable
   layers:
   - Default
   - TransparentFX

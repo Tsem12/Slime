@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public bool isAttacking;
-    private Animator animator;
-    private bool canDamage;
-    private EnemyHealth enemyTarget;
-    public Rigidbody2D rb;
     public bool canAttack = true;
+    public Rigidbody2D rb;
+
+    private Animator animator;
+    private EnemyHealth enemyTarget;
+    private bool canDamage;
 
     void Awake()
     {
@@ -22,11 +23,16 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false && canAttack == true)
         {
-            StartCoroutine(Attack());
+            LauchAttack();
         }
     }
 
-    IEnumerator Attack()
+    public void LauchAttack()
+    {
+            StartCoroutine(Attack());
+    }
+
+    public IEnumerator Attack()
     {
         GameManager.isInputEnable = false;
         isAttacking = true;
