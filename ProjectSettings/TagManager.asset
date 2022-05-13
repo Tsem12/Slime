@@ -13,6 +13,7 @@ TagManager:
   - Golem
   - Fly
   - Destroyable
+  - Human
   layers:
   - Default
   - TransparentFX

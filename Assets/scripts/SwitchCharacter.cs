@@ -6,9 +6,10 @@ public class SwitchCharacter : MonoBehaviour
 {
     public List<GameObject> charList;
     public GameObject activeCharacter;
-    private GameObject previusCharacter;
     public CameraFollow cameraFollow;
     public GameObject selectionWeel;
+
+    private GameObject previusCharacter;
 
     private void Start()
     {

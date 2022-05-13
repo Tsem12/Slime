@@ -25,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
             this.GetComponent<EnemyPatrol>().isDead = true;
             this.GetComponentInChildren<EnemyDamage>().enabled = false;
             this.GetComponentInChildren<AbsorptionEnemy>().enabled = true;
+            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 
         }
     }
@@ -32,6 +33,12 @@ public class EnemyHealth : MonoBehaviour
     public void DealDamage()
     {
         enemyDamage.EnemyDealDamage(10);
+    }
+
+    public void AnimatorOff()
+    {
+            animator.enabled = false;
+
     }
 
 

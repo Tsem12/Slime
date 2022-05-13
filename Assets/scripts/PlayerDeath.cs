@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
-    private Transform playerSpawn;
+    public Transform playerSpawn;
     private Animator animator;
+    public GameManager gameManager;
+
 
 
     private void Awake()
@@ -16,11 +18,6 @@ public class PlayerDeath : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartDeath()
     {
@@ -34,6 +31,8 @@ public class PlayerDeath : MonoBehaviour
         animator.SetTrigger("SwitchOut");
         playerHealth.currentHealth = playerHealth.maxHealth;
         playerHealth.healthBar.SetHealth(playerHealth.currentHealth);
+        gameManager.setDefeat(true);
+
     }
 
 

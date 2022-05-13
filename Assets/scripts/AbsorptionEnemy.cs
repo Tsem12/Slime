@@ -6,6 +6,8 @@ public class AbsorptionEnemy : MonoBehaviour
 {
     private string collisionTag;
     private GameObject gameManager;
+    public PlayerHealth playerHealth;
+
 
     private void Start()
     {
@@ -18,20 +20,28 @@ public class AbsorptionEnemy : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            switch (collisionTag)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                case "Fly":
-                    gameManager.GetComponent<WeelManager>().UnlockCharacter("fly");
-                    Debug.Log("La chauve souris est MORTE je l'ai TUER");
-                    break;
-                case "Golem":
-                    gameManager.GetComponent<WeelManager>().UnlockCharacter("golem");
-                    Debug.Log("Le Golem est MORT je l'ai TUER");
-                    break;
-                case "Human":
-                    gameManager.GetComponent<WeelManager>().UnlockCharacter("human");
-                    Debug.Log("L'humain est MORT je l'ai TUER");
-                    break;
+                switch (collisionTag)
+                {
+                    case "Fly":
+                        gameManager.GetComponent<WeelManager>().UnlockCharacter("fly");
+                        playerHealth.Heal(10);
+                        Debug.Log("La chauve souris est MORTE je l'ai TUER");
+                        break;
+                    case "Golem":
+                        gameManager.GetComponent<WeelManager>().UnlockCharacter("golem");
+                        Debug.Log("Le Golem est MORT je l'ai TUER");
+                        playerHealth.Heal(20);
+                        break;
+                    case "Human":
+                        gameManager.GetComponent<WeelManager>().UnlockCharacter("human");
+                        Debug.Log("L'humain est MORT je l'ai TUER");
+                        playerHealth.Heal(30);
+                        break;
+                }
+
+                Destroy(transform.parent.parent.parent.gameObject);
             }
         }
 

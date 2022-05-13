@@ -23,6 +23,12 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(20);
         }
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Heal(50);
+        }
+
+
     }
 
     public void TakeDamage(int damage)
@@ -33,5 +39,14 @@ public class PlayerHealth : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().StartDeath();
 
     }
+
+    public void Heal(int heal)
+    {
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
+    }
+
+    
+
 
 }

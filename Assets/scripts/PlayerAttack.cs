@@ -7,10 +7,12 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking;
     public bool canAttack = true;
     public Rigidbody2D rb;
+    public bool isFly;
 
     private Animator animator;
     private EnemyHealth enemyTarget;
     private bool canDamage;
+    public SwitchCharacter switchCharacter;
 
     void Awake()
     {
@@ -21,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false && canAttack == true)
+        if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false && canAttack == true && isFly == false)
         {
             LauchAttack();
         }

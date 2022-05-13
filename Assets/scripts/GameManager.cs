@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public PlayerAttack playerAttack;
     public SwitchCharacter switchCharacter;
     public GameObject pauseCanva;
+    public GameObject deafeatCanva;
 
     private bool isPause = false;
 
@@ -28,15 +29,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             selectionWeel.SetActive(true);
-            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
             Time.timeScale = 0.1f;
+            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
         }
 
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             selectionWeel.SetActive(false);
-            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
             Time.timeScale = 1f;
+            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
         }
 
         if (isPause == false && Input.GetKeyDown(KeyCode.Escape))
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
         else if (isPause == true && Input.GetKeyDown(KeyCode.Escape))
         {
             Pause(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            switchCharacter.activeCharacter.transform.position = new Vector3(48.78f, 22.374f, 1.158906f);
         }
 
 
@@ -83,10 +89,38 @@ public class GameManager : MonoBehaviour
                 pauseCanva.SetActive(false);
                 GameManager.isInputEnable = true;
                 isPause = false;
+            }
         }
+
+
+    public void setDefeat(bool isDead)
+    {
+        if(isDead == true)
+        {
+            Time.timeScale = 0;
+            deafeatCanva.SetActive(true);
         }
 
+        if (isDead == false)
+        {
+            Time.timeScale = 1;
+            deafeatCanva.SetActive(false);
+        }
+
+    }
+
+    public void Victory()
+    {
+        SceneManager.LoadScene("Win");
+    }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Victory();
+        }
+    }
 
 }
