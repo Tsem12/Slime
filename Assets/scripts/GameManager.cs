@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject selectionWeel;
     public PlayerAttack playerAttack;
     public SwitchCharacter switchCharacter;
+    public GameObject pauseCanva;
 
+    private bool isPause = false;
 
 
     private void Awake()
     {
-        if (instance != null)
-            instance = this;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -37,7 +39,52 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
         }
 
+        if (isPause == false && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause(true);
+        }
+        else if (isPause == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause(false);
+        }
+
+
+
     }
+
+        public void LoadGame()
+        {
+            SceneManager.LoadScene("Game");
+        }
+
+        public void LoadHome()
+        {
+            SceneManager.LoadScene("HomeMenu");
+        }
+
+    public void QuitGame()
+        {
+            Application.Quit();
+        }
+
+        public void Pause(bool isPause)
+        {
+            if(isPause == true)
+            {
+                Time.timeScale = 0;
+                pauseCanva.SetActive(true);
+                GameManager.isInputEnable = false;
+                isPause = true;
+
+            }
+            else
+            {
+                Time.timeScale = 1;
+                pauseCanva.SetActive(false);
+                GameManager.isInputEnable = true;
+                isPause = false;
+        }
+        }
 
 
 
