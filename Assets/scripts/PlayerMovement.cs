@@ -117,13 +117,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (_velocity > 0.1f)
         {
-            spriteRenderer.flipX = false;
-            atkHitBox.offset = new Vector2(attackBoxPos, atkHitBox.offset.y);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (_velocity < -0.1f)
         {
-            spriteRenderer.flipX = true;
-            atkHitBox.offset = new Vector2(-attackBoxPos, atkHitBox.offset.y);
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
     }
 

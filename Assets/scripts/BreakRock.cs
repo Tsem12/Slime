@@ -46,7 +46,6 @@ public class BreakRock : MonoBehaviour
                     }
                     break;
             }
-            Debug.Log(postionCheck - rb.transform.position.x);
         }
 
 
