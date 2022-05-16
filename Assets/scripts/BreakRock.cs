@@ -95,7 +95,7 @@ public class BreakRock : MonoBehaviour
         }
     }
 
-    private void Dash(float range, float speed)
+    private void Dash(float speed)
     {
         if(transform.eulerAngles.y == 0)
         {
