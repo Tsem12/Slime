@@ -27,15 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement;
     //private bool canDoubbleJump;
     private bool canPlane = true;
-    private BoxCollider2D atkHitBox;
     private bool isJumping;
-    private float attackBoxPos;
 
-    private void Start()
-    {
-        atkHitBox = gameObject.GetComponent<BoxCollider2D>();
-        attackBoxPos = this.GetComponent<BoxCollider2D>().offset.x;
-    }
 
     void Update()
     {

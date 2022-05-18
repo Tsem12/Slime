@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakRock : MonoBehaviour
+public class MissileLauncher : MonoBehaviour
 {
     public Sprite chargeSprite;
-    public GameObject chargingParticule;
+    public GameObject missile;
     public GameObject chargeParticule;
     public GameObject chargeParticule2;
+    public MissileBehaviour missileBehaviour;
 
     private Rigidbody2D rb;
-    private float dashCharge = 3f;
     private PlayerAttack playerAttack;
-    private int chargeLvl = 0;
     private Animator animator;
+    private int chargeLvl = 0;
+    private bool isShooting;
+    private float dashCharge = 3f;
     private float postionCheck;
-    private bool isDashing;
 
     private void Start()
     {
@@ -26,49 +27,53 @@ public class BreakRock : MonoBehaviour
 
     private void Update()
     {
-        if(isDashing == true)
+        if (isShooting == true)
         {
             postionCheck = Mathf.Abs(postionCheck);
             float newPos = Mathf.Abs(rb.transform.position.x);
-            
+
             switch (chargeLvl)
             {
                 case 1:
-                    if(postionCheck - newPos <= -1.5f || postionCheck - newPos >= 1.5f)
+                    if (postionCheck - newPos <= -1.5f || postionCheck - newPos >= 1.5f)
                     {
-                        rb.velocity = new Vector2(0f, 0f);
+                        Debug.Log("pan");
                         GameManager.isInputEnable = true;
                         chargeLvl = 0;
-                        isDashing = false;
+                        isShooting = false;
                     }
                     break;
                 case 2:
                     if (postionCheck - newPos <= -3f || postionCheck - newPos >= 3f)
                     {
-                        rb.velocity = new Vector2(0f, 0f);
+                        Debug.Log("pan2");
                         GameManager.isInputEnable = true;
                         chargeLvl = 0;
-                        isDashing = false;
+                        isShooting = false;
                     }
                     break;
             }
+        }
+ 
+
+        
 
 
+
+
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            animator.SetTrigger("ChargeMissile");
+            missile.SetActive(true);
+            missileBehaviour.enabled = true;
         }
 
-
-
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKey(KeyCode.X))
         {
-            animator.SetTrigger("Charge");
-            chargingParticule.SetActive(true);
-        }
-
-        if (Input.GetMouseButton(1))
-        {
+            rb.velocity = new Vector2(0f, 0f);
             dashCharge -= Time.deltaTime;
             GameManager.isInputEnable = false;
-            rb.velocity = new Vector2(0f, 0f);
 
             if (dashCharge <= 2)
                 chargeParticule.SetActive(true);
@@ -79,8 +84,11 @@ public class BreakRock : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetKeyUp(KeyCode.X))
         {
+            missileBehaviour.enabled = false;
+            missile.SetActive(false);
+
             if (dashCharge > 2)
             {
                 if (playerAttack.isAttacking == false && playerAttack.canAttack == true)
@@ -92,7 +100,7 @@ public class BreakRock : MonoBehaviour
 
             else if (dashCharge <= 2 && dashCharge > 0)
             {
-                Dash( 200f);
+                Dash(200f);
                 chargeLvl = 1;
                 postionCheck = this.transform.position.x;
             }
@@ -106,28 +114,19 @@ public class BreakRock : MonoBehaviour
             }
 
             dashCharge = 3f;
-            chargingParticule.SetActive(false);
             chargeParticule.SetActive(false);
             chargeParticule2.SetActive(false);
+
         }
+
     }
 
     private void Dash(float speed)
     {
-        if(transform.eulerAngles.y == 0)
-        {
-            rb.AddForce(new Vector2(speed, 0f));
-        }
-        else
-        {
-            rb.AddForce(new Vector2(-speed, 0f));
-        }
-        isDashing = true;
-        playerAttack.LauchAttack();
+
+        isShooting = true;
 
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Destroyable") && chargeLvl > 0)
@@ -139,7 +138,7 @@ public class BreakRock : MonoBehaviour
                     rb.velocity = new Vector2(0f, 0f);
                     GameManager.isInputEnable = true;
                     chargeLvl = 0;
-                    isDashing = false;
+                    isShooting = false;
                     break;
 
             }
