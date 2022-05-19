@@ -13,15 +13,17 @@ public class MissileBehaviour : MonoBehaviour
 
     [SerializeField]
     private GameObject parent;
-    void Start()
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        initPos = GetComponentInChildren<Transform>();
-        transform.position = initPos.position;
+
+        
     }
 
     void Update()
     {
+
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
@@ -35,13 +37,21 @@ public class MissileBehaviour : MonoBehaviour
             if (lookAngle > 90 && lookAngle <= 180 || lookAngle < -90 && lookAngle >= -180)
                 transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+        }
 
+    }
 
+    public void Fire()
+    {
+        rb.velocity = transform.up * 10f;
+    }
 
-
-        Debug.Log(lookAngle);
-
-
+    public void Init()
+    {
+        this.transform.position = initPos.position;
+        rb.velocity = Vector2.zero;
     }
 
 }

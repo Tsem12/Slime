@@ -1210,7 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d34f140a25d2ec40a8fbbfac84101ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeSprite: {fileID: -8609927983438734989, guid: d5932bd340861df459fdd718f260a7eb, type: 3}
   chargingParticule: {fileID: 953418551}
   chargeParticule: {fileID: 519636378}
   chargeParticule2: {fileID: 1615554199}
@@ -1226,10 +1225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11672dd9374c7da4eae06ebb5c7a46be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeSprite: {fileID: 0}
   missile: {fileID: 1168929091}
-  chargeParticule: {fileID: 0}
-  chargeParticule2: {fileID: 0}
+  chargeParticule: {fileID: 519636378}
+  chargeParticule2: {fileID: 1615554199}
   missileBehaviour: {fileID: 1168929093}
 --- !u!1 &105474266
 GameObject:

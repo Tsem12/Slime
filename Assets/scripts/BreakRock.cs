@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BreakRock : MonoBehaviour
 {
-    public Sprite chargeSprite;
     public GameObject chargingParticule;
     public GameObject chargeParticule;
     public GameObject chargeParticule2;

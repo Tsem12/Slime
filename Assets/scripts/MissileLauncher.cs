@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MissileLauncher : MonoBehaviour
 {
-    public Sprite chargeSprite;
     public GameObject missile;
     public GameObject chargeParticule;
     public GameObject chargeParticule2;
@@ -54,12 +53,6 @@ public class MissileLauncher : MonoBehaviour
                     break;
             }
         }
- 
-
-        
-
-
-
 
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -67,6 +60,7 @@ public class MissileLauncher : MonoBehaviour
             animator.SetTrigger("ChargeMissile");
             missile.SetActive(true);
             missileBehaviour.enabled = true;
+            missileBehaviour.Init();
         }
 
         if (Input.GetKey(KeyCode.X))
@@ -86,47 +80,39 @@ public class MissileLauncher : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.X))
         {
-            missileBehaviour.enabled = false;
-            missile.SetActive(false);
-
             if (dashCharge > 2)
             {
-                if (playerAttack.isAttacking == false && playerAttack.canAttack == true)
-                {
-                    playerAttack.LauchAttack();
-                }
-
+                missileBehaviour.Fire();
             }
 
             else if (dashCharge <= 2 && dashCharge > 0)
             {
-                Dash(200f);
+                missileBehaviour.Fire();
                 chargeLvl = 1;
-                postionCheck = this.transform.position.x;
             }
 
             else if (dashCharge <= 0)
             {
-                Dash(300f);
+                missileBehaviour.Fire();
                 chargeLvl = 2;
-                postionCheck = this.transform.position.x;
 
             }
 
             dashCharge = 3f;
             chargeParticule.SetActive(false);
             chargeParticule2.SetActive(false);
+            GameManager.isInputEnable = true;
 
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            missileBehaviour.enabled = false;
+            missile.SetActive(false);
+        }
     }
 
-    private void Dash(float speed)
-    {
 
-        isShooting = true;
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Destroyable") && chargeLvl > 0)
