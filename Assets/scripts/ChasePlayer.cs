@@ -18,18 +18,26 @@ public class ChasePlayer : MonoBehaviour
     [SerializeField]
     private float yOffsetCorrection;
 
+    [SerializeField]
+    private BoxCollider2D collider;
+
     private bool isInArea;
+
+    private void Start()
+    {
+        rb = GetComponentInChildren<Rigidbody2D>();
+    }
 
     private void Update()
     {
 
-        Debug.DrawRay(new Vector2(mob.position.x, mob.position.y - yOffsetCorrection), -mob.right * range, Color.red);
-        Debug.DrawRay(new Vector2(mob.position.x, mob.position.y - yOffsetCorrection), mob.right * range, Color.green);
+        Debug.DrawRay(new Vector2(mob.position.x - collider.size.x, mob.position.y - yOffsetCorrection), -mob.right * range, Color.red);
+        Debug.DrawRay(new Vector2(mob.position.x + collider.size.x, mob.position.y - yOffsetCorrection), mob.right * range, Color.green);
 
         if(isInArea == true)
         {
-            RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x, mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
-            RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
+            RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x - collider.size.x , mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
+            RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x + collider.size.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
 
             if (hitLeft != null)
             {
@@ -37,8 +45,9 @@ public class ChasePlayer : MonoBehaviour
                 {
                     if (hit.collider.tag == "Player")
                     {
-                        rb.velocity = new Vector2( - hit.collider.transform.position.x, 0f);
-                        Debug.Log("Detected Left");
+                        rb.velocity = new Vector2( - chaseSpeed, 0f);
+                        Debug.Log(Mathf.Abs(hit.collider.transform.position.x - transform.position.x));
+                        //Debug.Log("Detected Left");
                     }
                         
                 }
@@ -49,8 +58,9 @@ public class ChasePlayer : MonoBehaviour
                 {
                     if (hit.collider.tag == "Player")
                     {
-                        rb.velocity = new Vector2(hit.collider.transform.position.x, 0f);
-                        Debug.Log("Detected Right");
+                        rb.velocity = new Vector2(chaseSpeed, 0f);
+                        Debug.Log(Mathf.Abs(hit.collider.transform.position.x - transform.position.x));
+                        //Debug.Log("Detected Right");
                     }
                 }
             }
@@ -60,8 +70,8 @@ public class ChasePlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            rb = GetComponentInChildren<Rigidbody2D>();
-            GetComponentInChildren<EnemyPatrol>().enabled = false;
+            rb.velocity = Vector2.zero;
+            GetComponentInChildren<EnemyPatrol>().isChasing = false;
             isInArea = true;
         }
 
@@ -72,7 +82,8 @@ public class ChasePlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponentInChildren<EnemyPatrol>().enabled = true;
+            rb.velocity = Vector2.zero;
+            GetComponentInChildren<EnemyPatrol>().isChasing = true;
             isInArea = false;
         }
 

@@ -92,6 +92,7 @@ public class MissileBehaviour : MonoBehaviour
         knockback = false;
         animator.SetTrigger("Idle");
         playerMouvement.canFlip = true;
+        parent.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
     }
 

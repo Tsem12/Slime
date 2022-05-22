@@ -17,7 +17,7 @@ public class EnemyDamage : MonoBehaviour
     private void Start()
     {
         enemyHealth = GetComponentInParent<EnemyHealth>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponentInParent<Rigidbody2D>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)

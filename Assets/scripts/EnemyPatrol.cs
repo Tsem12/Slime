@@ -12,6 +12,7 @@ public class EnemyPatrol : MonoBehaviour
     private Transform target;
     private int destPoint = 0;
     public bool isDead = false;
+    public bool isChasing = true;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         Vector3 dir = target.position - transform.position;
-        if (!isDead)
+        if (!isDead && isChasing == true)
         {
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
