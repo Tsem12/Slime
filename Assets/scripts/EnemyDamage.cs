@@ -9,17 +9,22 @@ public class EnemyDamage : MonoBehaviour
     private EnemyHealth enemyHealth;
     private bool isAttacking = false;
     private bool isDead;
+    [SerializeField]
+    private float coolDown = 1f;
+    private Rigidbody2D rigidbody;
 
 
     private void Start()
     {
         enemyHealth = GetComponentInParent<EnemyHealth>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && isAttacking == false && !isDead)
         {
+            rigidbody.velocity = Vector3.zero;
             StartCoroutine(Damage());
         }
 
@@ -40,7 +45,7 @@ public class EnemyDamage : MonoBehaviour
     {
         isAttacking = true;
         animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(coolDown);
         isAttacking = false;
     }
 }

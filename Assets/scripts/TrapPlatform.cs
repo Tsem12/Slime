@@ -17,7 +17,8 @@ public class TrapPlatform : MonoBehaviour
         {
             bc.enabled = false;
             rb.constraints = RigidbodyConstraints2D.None;
-            Destroy(parent, 2);
+            rb.velocity = -Vector2.up * 10f;
+            Destroy(parent, 15);
         }
     }
 }

@@ -61,13 +61,14 @@ public class MissileLauncher : MonoBehaviour
             missile.SetActive(true);
             missileBehaviour.enabled = true;
             missileBehaviour.Init();
+            missileBehaviour.isShooting = false;
+            rb.velocity = new Vector2(0f, 0f);
+            GameManager.isInputEnable = false;
         }
 
         if (Input.GetKey(KeyCode.X))
         {
-            rb.velocity = new Vector2(0f, 0f);
             dashCharge -= Time.deltaTime;
-            GameManager.isInputEnable = false;
 
             if (dashCharge <= 2)
                 chargeParticule.SetActive(true);
@@ -82,19 +83,18 @@ public class MissileLauncher : MonoBehaviour
         {
             if (dashCharge > 2)
             {
-                missileBehaviour.Fire();
+                missileBehaviour.Fire(2f,0);
             }
 
             else if (dashCharge <= 2 && dashCharge > 0)
             {
-                missileBehaviour.Fire();
-                chargeLvl = 1;
+                missileBehaviour.Fire(5f, 1);
             }
 
             else if (dashCharge <= 0)
             {
-                missileBehaviour.Fire();
                 chargeLvl = 2;
+                missileBehaviour.Fire(10f, 2);
 
             }
 
@@ -105,29 +105,6 @@ public class MissileLauncher : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            missileBehaviour.enabled = false;
-            missile.SetActive(false);
-        }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Destroyable") && chargeLvl > 0)
-        {
-            collision.gameObject.SetActive(false);
-            switch (chargeLvl)
-            {
-                case 1:
-                    rb.velocity = new Vector2(0f, 0f);
-                    GameManager.isInputEnable = true;
-                    chargeLvl = 0;
-                    isShooting = false;
-                    break;
-
-            }
-        }
-    }
 }

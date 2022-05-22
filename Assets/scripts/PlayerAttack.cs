@@ -51,16 +51,12 @@ public class PlayerAttack : MonoBehaviour
         if(canDamage == true)
         {
             enemyTarget.TakeDamage(10);
-            //if (rb.velocity.x > Mathf.Epsilon)
-                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(1.5f, 0f);
-           // else
-                //enemyTarget.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(-1.5f, 0f);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem")
         {
             enemyTarget = collision.GetComponentInParent<EnemyHealth>();
             canDamage = true;

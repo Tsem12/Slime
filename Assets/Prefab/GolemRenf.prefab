@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5434868031707825407}
+  coolDown: 1
 --- !u!114 &3628030339332478137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,3 +516,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseSpeed: 2
+  mob: {fileID: 4362486330636101807}
+  range: 5

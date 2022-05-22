@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isHuman;
     public bool isFly;
     public bool isRenf;
+    [HideInInspector]
+    public bool canFlip = true;
 
     public Rigidbody2D rb;
     public Animator animator;
@@ -109,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
     {
         
 
-        if (_velocity > 0.1f)
+        if (_velocity > 0.1f && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if (_velocity < -0.1f)
+        else if (_velocity < -0.1f && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
