@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public SwitchCharacter switchCharacter;
+    private Rigidbody2D rb;
     public bool isAttacking;
     public bool canAttack = true;
-    public Rigidbody2D rb;
     public bool isFly;
 
     private Animator animator;
     private EnemyHealth enemyTarget;
     private bool canDamage;
-    public SwitchCharacter switchCharacter;
+    private int enemyInRange;
 
     void Awake()
     {
-        animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponentInParent<Animator>();
+        rb = gameObject.GetComponentInParent<Rigidbody2D>();
         isAttacking = false;
         canAttack = true;
     }
@@ -27,6 +29,10 @@ public class PlayerAttack : MonoBehaviour
         {
             LauchAttack();
         }
+        if (enemyInRange > 0)
+            canDamage = true;
+        else if(enemyInRange < 0)
+            canDamage = false;
     }
 
     public void LauchAttack()
@@ -59,11 +65,16 @@ public class PlayerAttack : MonoBehaviour
         if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem")
         {
             enemyTarget = collision.GetComponentInParent<EnemyHealth>();
-            canDamage = true;
-        } else
-        {
-            canDamage = false;
+            enemyInRange += 1;
         }
 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag != "Fly" || collision.tag != "Human" || collision.tag != "Golem")
+        {
+            enemyInRange -= 1;
+        }
     }
 }

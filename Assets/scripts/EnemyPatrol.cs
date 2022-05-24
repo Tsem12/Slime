@@ -22,6 +22,7 @@ public class EnemyPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(isDead);
         Vector3 dir = target.position - transform.position;
         if (!isDead && isChasing == true)
         {

@@ -10,26 +10,41 @@ public class EnemyDamage : MonoBehaviour
     private bool isAttacking = false;
     private bool isDead;
     [SerializeField]
-    private float coolDown = 1f;
+    private float coolDown;
     private Rigidbody2D rigidbody;
-
+    private bool canAttack;
 
     private void Start()
     {
         enemyHealth = GetComponentInParent<EnemyHealth>();
         rigidbody = GetComponentInParent<Rigidbody2D>();
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.CompareTag("Player") && isAttacking == false && !isDead)
+        if (canAttack == true && isAttacking == false)
         {
             rigidbody.velocity = Vector3.zero;
             StartCoroutine(Damage());
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && isAttacking == false && !isDead)
+        {
+            canAttack = true;
+        }
 
     }
-     
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            canAttack = false;
+        }
+    }
+
     public void EnemyDealDamage(int damage)
     {
         isDead = gameObject.GetComponentInParent<EnemyPatrol>().isDead;

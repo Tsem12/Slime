@@ -30,8 +30,12 @@ public class PlayerMovement : MonoBehaviour
     //private bool canDoubbleJump;
     private bool canPlane = true;
     private bool isJumping;
+    private Collider2D collisionCollider;
 
-
+    private void Start()
+    {
+        collisionCollider = GetComponent<CapsuleCollider2D>();
+    }
     void Update()
     {
         
@@ -147,4 +151,5 @@ public class PlayerMovement : MonoBehaviour
     {
         canPlane = true;
     }
+
 }

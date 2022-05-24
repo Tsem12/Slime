@@ -36,6 +36,8 @@ public class ChasePlayer : MonoBehaviour
 
         if(isInArea == true)
         {
+
+            rb.velocity = Vector2.zero;
             RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x - collider.size.x , mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
             RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x + collider.size.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
 
@@ -46,7 +48,6 @@ public class ChasePlayer : MonoBehaviour
                     if (hit.collider.tag == "Player")
                     {
                         rb.velocity = new Vector2( - chaseSpeed, 0f);
-                        Debug.Log(Mathf.Abs(hit.collider.transform.position.x - transform.position.x));
                         //Debug.Log("Detected Left");
                     }
                         
@@ -59,7 +60,6 @@ public class ChasePlayer : MonoBehaviour
                     if (hit.collider.tag == "Player")
                     {
                         rb.velocity = new Vector2(chaseSpeed, 0f);
-                        Debug.Log(Mathf.Abs(hit.collider.transform.position.x - transform.position.x));
                         //Debug.Log("Detected Right");
                     }
                 }
@@ -70,7 +70,6 @@ public class ChasePlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            rb.velocity = Vector2.zero;
             GetComponentInChildren<EnemyPatrol>().isChasing = false;
             isInArea = true;
         }

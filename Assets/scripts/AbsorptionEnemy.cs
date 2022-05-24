@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class AbsorptionEnemy : MonoBehaviour
 {
-    private string collisionTag;
-    private GameObject gameManager;
     public PlayerHealth playerHealth;
 
+    private string collisionTag;
+    private GameObject gameManager;
+    private bool canAbsorb;
+    private SwitchCharacter switchCharacter;
 
     private void Start()
     {
         collisionTag = this.tag;
         gameManager = GameObject.Find("GameManager");
+        switchCharacter = GameObject.Find("CharacterManager").GetComponent<SwitchCharacter>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
-
-        if (collision.CompareTag("Player"))
+        //Debug.Log(canAbsorb);
+        if (Input.GetKeyDown(KeyCode.E) && canAbsorb == true && GetComponentInParent<EnemyPatrol>().isDead == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if(switchCharacter.activeCharacter.name == "Player")
             {
                 switch (collisionTag)
                 {
@@ -40,12 +43,23 @@ public class AbsorptionEnemy : MonoBehaviour
                         playerHealth.Heal(30);
                         break;
                 }
-
                 Destroy(transform.parent.parent.parent.gameObject);
             }
+
+
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            canAbsorb = true;
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            canAbsorb = false;
 
     }
 }

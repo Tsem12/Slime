@@ -19,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         enemyHealth -= damageAmount;
+        KnockBack();
         if (enemyHealth <= 0)
         {
             animator.SetBool("Death", true);
@@ -28,6 +29,11 @@ public class EnemyHealth : MonoBehaviour
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 
         }
+    }
+
+    public void KnockBack()
+    {
+        //this.GetComponent<Rigidbody2D>().AddForce(new Vector2())
     }
 
     public void DealDamage()

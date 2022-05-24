@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7447715258520145756}
-  coolDown: 1
+  coolDown: 2
 --- !u!114 &7400478710390366340
 MonoBehaviour:
   m_ObjectHideFlags: 0
