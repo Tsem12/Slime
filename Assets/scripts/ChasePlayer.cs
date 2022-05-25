@@ -19,7 +19,7 @@ public class ChasePlayer : MonoBehaviour
     private float yOffsetCorrection;
 
     [SerializeField]
-    private BoxCollider2D collider;
+    private BoxCollider2D hitBox;
 
     private bool isInArea;
 
@@ -31,15 +31,15 @@ public class ChasePlayer : MonoBehaviour
     private void Update()
     {
 
-        Debug.DrawRay(new Vector2(mob.position.x - collider.size.x, mob.position.y - yOffsetCorrection), -mob.right * range, Color.red);
-        Debug.DrawRay(new Vector2(mob.position.x + collider.size.x, mob.position.y - yOffsetCorrection), mob.right * range, Color.green);
+        Debug.DrawRay(new Vector2(mob.position.x - hitBox.size.x, mob.position.y - yOffsetCorrection), -mob.right * range, Color.red);
+        Debug.DrawRay(new Vector2(mob.position.x + hitBox.size.x, mob.position.y - yOffsetCorrection), mob.right * range, Color.green);
 
         if(isInArea == true)
         {
 
             rb.velocity = Vector2.zero;
-            RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x - collider.size.x , mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
-            RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x + collider.size.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
+            RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x - hitBox.size.x , mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
+            RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x + hitBox.size.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
 
             if (hitLeft != null)
             {
@@ -64,6 +64,7 @@ public class ChasePlayer : MonoBehaviour
                     }
                 }
             }
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

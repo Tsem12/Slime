@@ -16,10 +16,10 @@ public class EnemyHealth : MonoBehaviour
     {
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, float knockbackX, float knockbackY)
     {
         enemyHealth -= damageAmount;
-        KnockBack();
+        KnockBack(knockbackX, knockbackY);
         if (enemyHealth <= 0)
         {
             animator.SetBool("Death", true);
@@ -31,9 +31,9 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void KnockBack()
+    public void KnockBack(float xValue, float yValue)
     {
-        //this.GetComponent<Rigidbody2D>().AddForce(new Vector2())
+        this.GetComponent<Rigidbody2D>().AddForce(new Vector2(xValue, yValue));
     }
 
     public void DealDamage()

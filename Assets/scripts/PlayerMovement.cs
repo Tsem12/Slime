@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -87,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         if (GameManager.isInputEnable == true)
             MovePlayer(horizontalMovement);
@@ -115,11 +115,11 @@ public class PlayerMovement : MonoBehaviour
     {
         
 
-        if (_velocity > 0.1f && canFlip == true)
+        if (Input.GetKeyDown(KeyCode.D) && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if (_velocity < -0.1f && canFlip == true)
+        else if (Input.GetKeyDown(KeyCode.Q) && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }

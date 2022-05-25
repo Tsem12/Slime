@@ -44,6 +44,13 @@ public class AbsorptionEnemy : MonoBehaviour
                         break;
                 }
                 Destroy(transform.parent.parent.parent.gameObject);
+                switchCharacter.activeCharacter.GetComponent<Animator>().SetTrigger("Absorb");
+            }
+            else
+            {
+                Animator[] animator = switchCharacter.activeCharacter.GetComponentsInChildren<Animator>();
+                animator[1].SetTrigger("NeedSlime");
+                
             }
 
 

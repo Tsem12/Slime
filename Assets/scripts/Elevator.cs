@@ -7,6 +7,7 @@ public class Elevator : MonoBehaviour
     private GameObject player;
 
     public float upForce;
+    public bool isON;
 
 
 
@@ -14,7 +15,7 @@ public class Elevator : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && isON == true)
         {
             player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, upForce));
         }

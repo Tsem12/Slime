@@ -23,7 +23,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (canAttack == true && isAttacking == false)
         {
-            rigidbody.velocity = Vector3.zero;
+            //rigidbody.velocity = Vector3.zero;
             StartCoroutine(Damage());
         }
     }

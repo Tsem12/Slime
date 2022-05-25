@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public float knockBackX = 200000000000000000000000000000000000000.5f;
+    public float knockBackY = 200000000000000000000000000000000000000.5f;
     public SwitchCharacter switchCharacter;
     private Rigidbody2D rb;
     public bool isAttacking;
@@ -11,9 +13,8 @@ public class PlayerAttack : MonoBehaviour
     public bool isFly;
 
     private Animator animator;
-    private EnemyHealth enemyTarget;
+    private EnemyHealth enemyTarget ;
     private bool canDamage;
-    private int enemyInRange;
 
     void Awake()
     {
@@ -29,10 +30,6 @@ public class PlayerAttack : MonoBehaviour
         {
             LauchAttack();
         }
-        if (enemyInRange > 0)
-            canDamage = true;
-        else if(enemyInRange < 0)
-            canDamage = false;
     }
 
     public void LauchAttack()
@@ -56,16 +53,16 @@ public class PlayerAttack : MonoBehaviour
     {
         if(canDamage == true)
         {
-            enemyTarget.TakeDamage(10);
+            enemyTarget.TakeDamage(10, knockBackX, knockBackY);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem")
         {
             enemyTarget = collision.GetComponentInParent<EnemyHealth>();
-            enemyInRange += 1;
+            canDamage = true;
         }
 
     }
@@ -74,7 +71,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.tag != "Fly" || collision.tag != "Human" || collision.tag != "Golem")
         {
-            enemyInRange -= 1;
+            enemyTarget = null;
+            canDamage = false;
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3266401185201807234}
   - component: {fileID: 5035544878873564194}
   - component: {fileID: 8137983976745867943}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: rock
   m_TagString: Destroyable
   m_Icon: {fileID: 0}
