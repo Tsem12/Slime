@@ -465,4 +465,4 @@ MonoBehaviour:
   mob: {fileID: 4362486330636101807}
   range: 5
   yOffsetCorrection: 0
-  collider: {fileID: 8464743615338334660}
+  hitBox: {fileID: 8464743615338334660}

@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class BossGate : MonoBehaviour
 {
-    [SerializeField] private GameObject triger;
-    [SerializeField] private Animator animator;
+    public bool isBossDefeated;
+    private Animator animator;
 
-    [SerializeField] private BoxCollider2D bc;
-    [SerializeField] private BoxCollider2D parentBc;
-    [SerializeField] private bool isOpen;
+    private BoxCollider2D bc;
+    private BoxCollider2D parentBc;
+    private bool isOpen;
+    [SerializeField] private GameObject elevatorObject;
+    
 
     void Start()
     {
-   
+        bc = GetComponent<BoxCollider2D>();
+        parentBc = GetComponentInParent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isBossDefeated)
+        {
+            if (elevatorObject != null)
+                elevatorObject.GetComponent<Elevator>().isON = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,16 +46,12 @@ public class BossGate : MonoBehaviour
             parentBc.GetComponent<BoxCollider2D>().enabled = false;
             }
 
-        StartCoroutine(ActiveElevator());
+        
 
         }
 
        
     }
 
-    IEnumerator ActiveElevator()
-    {
-        yield return new WaitForSeconds(1);
-    }
 }
 

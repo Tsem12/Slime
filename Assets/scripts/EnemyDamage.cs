@@ -11,13 +11,13 @@ public class EnemyDamage : MonoBehaviour
     private bool isDead;
     [SerializeField]
     private float coolDown;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
     private bool canAttack;
 
     private void Start()
     {
         enemyHealth = GetComponentInParent<EnemyHealth>();
-        rigidbody = GetComponentInParent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
     private void Update()
     {

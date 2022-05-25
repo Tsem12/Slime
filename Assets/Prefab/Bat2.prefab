@@ -164,6 +164,7 @@ MonoBehaviour:
   mob: {fileID: 4080204805072344835}
   range: 5
   yOffsetCorrection: 0
+  hitBox: {fileID: 8831362274401502671}
 --- !u!1 &6908943914646426190
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +425,7 @@ MonoBehaviour:
   - {fileID: 3031910596466086270}
   graphics: {fileID: 8298890645952109628}
   isDead: 0
+  isChasing: 1
 --- !u!114 &1584978356687902529
 MonoBehaviour:
   m_ObjectHideFlags: 0

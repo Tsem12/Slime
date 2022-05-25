@@ -78,7 +78,7 @@ MonoBehaviour:
   mob: {fileID: 5095015227054063113}
   range: 5
   yOffsetCorrection: 0
-  collider: {fileID: 1100923497950207842}
+  hitBox: {fileID: 1100923497950207842}
 --- !u!1 &1332437030891056718
 GameObject:
   m_ObjectHideFlags: 0
