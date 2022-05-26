@@ -5,20 +5,11 @@ using UnityEngine;
 public class BossGate : MonoBehaviour
 {
     public bool isBossDefeated;
-    private Animator animator;
 
-    private BoxCollider2D bc;
-    private BoxCollider2D parentBc;
     private bool isOpen;
     [SerializeField] private GameObject elevatorObject;
+    [SerializeField] private BoxCollider2D bc;
     
-
-    void Start()
-    {
-        bc = GetComponent<BoxCollider2D>();
-        parentBc = GetComponentInParent<BoxCollider2D>();
-        animator = GetComponent<Animator>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -37,13 +28,13 @@ public class BossGate : MonoBehaviour
         {
             if (isOpen == true)
             {
-            animator.SetBool("Open", true);
-            parentBc.GetComponent<BoxCollider2D>().enabled = true;
+                bc.isTrigger = true;
+                GetComponentInParent<Animator>().SetBool("Open", true);
             }
             else
             {
-            animator.SetBool("Open", true);
-            parentBc.GetComponent<BoxCollider2D>().enabled = false;
+                bc.isTrigger = false;
+                GetComponentInParent<Animator>().SetBool("Open", true);
             }
 
         

@@ -11,9 +11,11 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking;
     public bool canAttack = true;
     public bool isFly;
+    public int playerDamage = 10;
 
     private Animator animator;
     private EnemyHealth enemyTarget ;
+    private BossHealth bossTarget ;
     private bool canDamage;
 
     void Awake()
@@ -53,7 +55,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if(canDamage == true)
         {
-            enemyTarget.TakeDamage(10, knockBackX, knockBackY);
+            if(enemyTarget != null)
+                enemyTarget.TakeDamage(playerDamage, knockBackX, knockBackY);
+            if (bossTarget != null)
+                bossTarget.TakeDamage(playerDamage);
         }
     }
 
@@ -64,14 +69,20 @@ public class PlayerAttack : MonoBehaviour
             enemyTarget = collision.GetComponentInParent<EnemyHealth>();
             canDamage = true;
         }
+        else if (collision.tag == "Boss")
+        {
+            bossTarget = collision.GetComponentInParent<BossHealth>();
+            canDamage = true;
+        }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Fly" || collision.tag != "Human" || collision.tag != "Golem")
+        if (collision.tag != "Fly" || collision.tag != "Human" || collision.tag != "Golem" || collision.tag !="Boss")
         {
             enemyTarget = null;
+            bossTarget = null;
             canDamage = false;
         }
     }

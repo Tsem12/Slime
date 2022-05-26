@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -484,6 +485,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Laser_sheet_10: -6701801219439810234
+      Laser15: -2656773159261285837
+      Laser3: -1950424157889047715
+      Laser13: -8978408729274254430
+      Laser14: -5341597898538695221
+      Laser5: 7473293220430665474
+      Laser2: 4238861351130170196
+      Laser6: -5041315827434484139
+      Laser10: -4469117517395524942
+      Laser12: 797768032434522389
+      Laser9: -274854406761784476
+      Laser11: 7394835561953233644
+      Laser8: -1702599639152044942
+      Laser4: -1336750148893057986
+      Laser7: 4487909370968573847
+      Laser1: -6911181621799430481
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -252,6 +252,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -296,7 +297,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -305,6 +306,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1924,6 +1937,83 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tile set_43: -8530203963452211701
+      tile set_75: 2714974926002409874
+      tile set_44: 3779895634249111234
+      tile set_70: -3900147506590751310
+      tile set_66: -1465255347427811859
+      tile set_74: 2879603341134486071
+      tile set_10: -9144509802841862992
+      tile set_35: -8614843302446461336
+      tile set_16: -4605309315500976311
+      tile set_21: 4937631211060036277
+      tile set_39: 7969584152952886071
+      tile set_65: -7519999751487837519
+      tile set_40: 7048606949950937194
+      tile set_49: 5877771787135209482
+      tile set_67: 1160018394329500015
+      tile set_41: 7852992344336836868
+      tile set_26: 1172199445955497461
+      tile set_9: -352129615440633740
+      tile set_47: -6004167092286942885
+      tile set_42: -9192182583561511364
+      tile set_62: 582814343063264414
+      tile set_51: -2284739897157089943
+      tile set_19: 449884040875395045
+      tile set_0: 6474978690473533622
+      tile set_23: 4645379799984008021
+      tile set_38: 575485600620578524
+      tile set_73: 4872381056251407540
+      tile set_27: 866030582836699746
+      tile set_17: -7661177518745100035
+      tile set_3: -7226891677937655174
+      tile set_15: 4219541604933694898
+      tile set_34: -5741703060809027665
+      tile set_5: 6497883330391320663
+      tile set_71: -5204819587346555018
+      tile set_50: -6767555231863563620
+      tile set_20: -6257806109998690067
+      tile set_37: 4268849480596478330
+      tile set_54: -4980986401751311025
+      tile set_32: -187531317760534882
+      tile set_22: 3211589445939783095
+      tile set_53: -7410106133477042826
+      tile set_69: -5268652899492798024
+      tile set_24: -7974360565125115947
+      tile set_46: -1826433372782349792
+      tile set_64: 9008190299747532011
+      tile set_56: -8479633525772289745
+      tile set_63: 8462712863928648042
+      tile set_12: 1322991343749684830
+      tile set_18: 8645113230034575432
+      tile set_2: 2126712649534454518
+      tile set_6: 5155413061035506667
+      tile set_8: 1382785283562929311
+      tile set_14: 7459029753265721326
+      tile set_58: -1798700724182109677
+      tile set_31: -3642426044638776909
+      tile set_30: 1243252851751089885
+      tile set_48: -217011672896880431
+      tile set_45: 2036251045330657714
+      tile set_25: 7302560908272623090
+      tile set_33: 6837596585806302522
+      tile set_28: -2642157460336716305
+      tile set_13: -722758526901215679
+      tile set_52: 4803650051837727675
+      tile set_1: 707822426286046515
+      tile set_61: -1728260847628416870
+      tile set_11: -8195935962618519966
+      tile set_68: 2830989651582401062
+      tile set_72: 3109622409447057119
+      tile set_36: -7938871364049615015
+      tile set_4: -8302544395817574985
+      tile set_29: 1892189001839030758
+      tile set_7: -7164329444932739364
+      tile set_59: -6487330347165236822
+      tile set_60: -7907571974527824271
+      tile set_57: 3141364195911484627
+      tile set_55: -33568331709517853
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

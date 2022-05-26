@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      arm_projectile_glowing_0: 95044405116505353
+      arm_projectile_glowing_5: -4212147560741854503
+      arm_projectile_glowing_3: 8066067344937695706
+      arm_projectile_glowing_4: 8081469474457304709
+      arm_projectile_glowing_2: 959987844630726459
+      arm_projectile_glowing_1: 5053551332890923903
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

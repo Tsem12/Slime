@@ -9,17 +9,13 @@ public class ChasePlayer : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    [SerializeField]
-    private Transform mob;
+    [SerializeField] private Transform mob;
 
-    [SerializeField]
-    private float range = 5;
+    [SerializeField] private float range = 5;
 
-    [SerializeField]
-    private float yOffsetCorrection;
+    [SerializeField] private float yOffsetCorrection;
 
-    [SerializeField]
-    private BoxCollider2D hitBox;
+    [SerializeField] private BoxCollider2D hitBox;
 
     private bool isInArea;
 

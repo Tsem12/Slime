@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1252,6 +1253,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Dark_lvl1_16: 1244785131262168274
+      Dark_lvl1_15: -2067368070745704509
+      Dark_lvl1_40: 5272885016278472269
+      Dark_lvl1_38: -6327266769020453329
+      Dark_lvl1_44: -4987955762222583411
+      Dark_lvl1_1: -2793125032296606398
+      Dark_lvl1_32: -7586644365833779760
+      Dark_lvl1_20: -4565096862234125922
+      Dark_lvl1_7: -5093940334177704403
+      Dark_lvl1_13: 4158786308654645001
+      Dark_lvl1_22: 6112112964248176557
+      Dark_lvl1_8: -1928055761659926392
+      Dark_lvl1_41: 1704808926100047909
+      Dark_lvl1_5: 827809689161303801
+      Dark_lvl1_29: -8217463076803714526
+      Dark_lvl1_31: -8037665936580989585
+      Dark_lvl1_46: -9055256045085819742
+      Dark_lvl1_14: 1496411318552691555
+      Dark_lvl1_30: 6971316630402815097
+      Dark_lvl1_24: -6661431919075224794
+      Dark_lvl1_36: -8641781154039047856
+      Dark_lvl1_42: 5805588039687129323
+      Dark_lvl1_27: 2630095037341309156
+      Dark_lvl1_34: -4112079904838607365
+      Dark_lvl1_47: 4260570820096701037
+      Dark_lvl1_17: 6550396536385008753
+      Dark_lvl1_10: -7105941761521199523
+      Dark_lvl1_3: -2392547169339456904
+      Dark_lvl1_43: 1852295894913528633
+      Dark_lvl1_26: -6987486840078989832
+      Dark_lvl1_6: 7983190791939700690
+      Dark_lvl1_9: -9071973571565935272
+      Dark_lvl1_21: 8469653139240883524
+      Dark_lvl1_2: -8370431741577688509
+      Dark_lvl1_12: 3734545857707112810
+      Dark_lvl1_45: -1632284713547602300
+      Dark_lvl1_39: 8141643694354261803
+      Dark_lvl1_11: 8526955404115507615
+      Dark_lvl1_4: -1809999843745800456
+      Dark_lvl1_37: 189256581375427669
+      Dark_lvl1_35: -7326720759255785324
+      Dark_lvl1_25: 2370088166353111624
+      Dark_lvl1_0: 8413552991043628535
+      Dark_lvl1_28: -6803594454362533179
+      Dark_lvl1_33: 3342128712859236486
+      Dark_lvl1_23: 4392069876511494850
+      Dark_lvl1_19: -793390008113548176
+      Dark_lvl1_18: -5965331240003075153
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

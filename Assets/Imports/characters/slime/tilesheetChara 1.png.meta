@@ -138,6 +138,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1012,6 +1013,45 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tilesheetChara 1_25: 6997486952576887351
+      tilesheetChara 1_5: 3414905993304597966
+      tilesheetChara 1_9: 1862928266512032133
+      tilesheetChara 1_29: 3952944038059415710
+      tilesheetChara 1_23: 2243588787680912505
+      tilesheetChara 1_2: 8618573037182679587
+      tilesheetChara 1_12: 7981069351120400751
+      tilesheetChara 1_13: -6413348087836815961
+      tilesheetChara 1_19: 1567048222116014364
+      tilesheetChara 1_7: -8117635000822232429
+      tilesheetChara 1_33: -9182717694406679075
+      tilesheetChara 1_14: -2376868330257435494
+      tilesheetChara 1_30: -3041309759706409897
+      tilesheetChara 1_37: 6567492247214609725
+      tilesheetChara 1_1: 6348524637599519881
+      tilesheetChara 1_8: -319038001232945638
+      tilesheetChara 1_24: -1696628790015795085
+      tilesheetChara 1_32: -7724879524746678185
+      tilesheetChara 1_11: -5839407472826205755
+      tilesheetChara 1_20: -1087357928801555349
+      tilesheetChara 1_17: 1373979088519730789
+      tilesheetChara 1_34: -4354323872163354759
+      tilesheetChara 1_4: -8792244759814870669
+      tilesheetChara 1_15: -8807199371655881506
+      tilesheetChara 1_18: 4539903126518317444
+      tilesheetChara 1_0: 7840027152281276394
+      tilesheetChara 1_3: -5019221935639173599
+      tilesheetChara 1_26: -4797724919781869319
+      tilesheetChara 1_28: 8937166994929171145
+      tilesheetChara 1_21: 6156163408380555611
+      tilesheetChara 1_10: 7396191195961810430
+      tilesheetChara 1_35: 7101446025040526502
+      tilesheetChara 1_31: -2359681907370292984
+      tilesheetChara 1_36: -8087146903982229123
+      tilesheetChara 1_22: -8652230554366139544
+      tilesheetChara 1_16: 3923355770356424757
+      tilesheetChara 1_6: -1476119052917666771
+      tilesheetChara 1_27: 3956508136049052316
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

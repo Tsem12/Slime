@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1636,6 +1637,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      All_sprites_55: 1256597663360364949
+      All_sprites_56: 2210270203425227492
+      All_sprites_60: 472493502409269465
+      All_sprites_31: 4793802776430087430
+      All_sprites_18: -4888508291388800616
+      All_sprites_19: 6968724462970138959
+      All_sprites_2: -6119391784079494865
+      All_sprites_38: -1564999761916578623
+      All_sprites_61: -553831723603583288
+      All_sprites_16: -8912876259544372566
+      All_sprites_10: 1250637259655775
+      All_sprites_49: -5002860714848914313
+      All_sprites_1: -5181066140091530834
+      All_sprites_8: 1666970966191529538
+      All_sprites_58: 5217916494427594034
+      All_sprites_41: -5768130577420537984
+      All_sprites_62: -4865939486711397062
+      All_sprites_45: 3721239836433839221
+      All_sprites_40: -2615613521751230125
+      All_sprites_36: -577595757955431211
+      All_sprites_42: -3505542417913901560
+      All_sprites_25: -1297082439431220142
+      All_sprites_51: -6863999306545713287
+      All_sprites_34: -3132386993880936172
+      All_sprites_39: -3743461041984090889
+      All_sprites_24: 4632971785166477451
+      All_sprites_57: 2561000118729289890
+      All_sprites_4: -248139910193978506
+      All_sprites_50: -2873401364242930165
+      All_sprites_15: -2173901401302583354
+      All_sprites_54: 8664054150709655667
+      All_sprites_59: -2004806895481711329
+      All_sprites_9: 2933636256099568664
+      All_sprites_53: 898583772856550067
+      All_sprites_47: -5757455109738708108
+      All_sprites_37: 404772206019081646
+      All_sprites_12: 2422801017578319854
+      All_sprites_5: 7234602201064802406
+      All_sprites_44: 1257148686936842087
+      All_sprites_52: -8496464457811940864
+      All_sprites_26: 5354239636614749745
+      All_sprites_32: -6795054307564995719
+      All_sprites_63: -4769964715616579809
+      All_sprites_11: -4987587431429935325
+      All_sprites_3: 275551344254863340
+      All_sprites_48: -703840812403744412
+      All_sprites_21: 6105222705976374313
+      All_sprites_28: -8873887049434495055
+      All_sprites_6: 7672491669846061588
+      All_sprites_0: 8931333435384243381
+      All_sprites_29: -7002762010472527367
+      All_sprites_23: 5521304064802527477
+      All_sprites_30: 9140480488280427496
+      All_sprites_22: 8988201300921149981
+      All_sprites_17: 312027081925461156
+      All_sprites_35: 6815290704332866988
+      All_sprites_43: -8336156450635754706
+      All_sprites_13: 8304719534060697819
+      All_sprites_7: -1694825397880059047
+      All_sprites_20: -3468605488532559001
+      All_sprites_46: 1877211422378023530
+      All_sprites_27: 8343910134270148620
+      All_sprites_33: 5812447436041687204
+      All_sprites_14: 5183913146594397841
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
