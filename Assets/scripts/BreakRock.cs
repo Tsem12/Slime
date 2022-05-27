@@ -15,6 +15,7 @@ public class BreakRock : MonoBehaviour
     private Animator animator;
     private float postionCheck;
     private bool isDashing;
+    private List<GameObject> enemiesDashed = new List<GameObject>();
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class BreakRock : MonoBehaviour
                         GameManager.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
+                        EmptyArray();
                     }
                     break;
                 case 2:
@@ -48,6 +50,7 @@ public class BreakRock : MonoBehaviour
                         GameManager.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
+                        EmptyArray();
                     }
                     break;
             }
@@ -126,18 +129,43 @@ public class BreakRock : MonoBehaviour
 
     }
 
+    private void EmptyArray()
+    {
+        foreach(GameObject mob in enemiesDashed)
+        {
+            if (mob.GetComponentInParent<EnemyHealth>() != null)
+                mob.GetComponentInParent<EnemyHealth>().isDashed = false;
+        }
+        enemiesDashed.Clear();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Destroyable") && chargeLvl > 1)
+        if (collision.CompareTag("Destroyable") && chargeLvl == 1)
         {
             collision.gameObject.SetActive(false);
 
-            //rb.velocity = new Vector2(0f, 0f);
+            rb.velocity = new Vector2(0f, 0f);
             GameManager.isInputEnable = true;
-            //chargeLvl = 0;
+            chargeLvl = 0;
             isDashing = false;
-        }  
+            EmptyArray();
+        }
+
+        if (collision.CompareTag("Destroyable") && chargeLvl == 2)
+        {
+            collision.gameObject.SetActive(false);
+        }
+
+        if (collision.tag == "platform" || collision.tag == "Enemy")
+        {
+            rb.velocity = new Vector2(0f, 0f);
+            GameManager.isInputEnable = true;
+            chargeLvl = 0;
+            isDashing = false;
+            EmptyArray();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -146,5 +174,16 @@ public class BreakRock : MonoBehaviour
         {
             collision.GetComponent<BossHealth>().stopted = true;
         }
+
+        if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem")
+        {
+            if(collision.GetComponentInParent<EnemyHealth>().isDashed == false && chargeLvl > 0)
+            {
+                enemiesDashed.Add(collision.gameObject);
+                collision.GetComponentInParent<EnemyHealth>().TakeDamage(10, 2, 2);
+                collision.GetComponentInParent<EnemyHealth>().isDashed = true;
+            }
+        }
     }
+
 }

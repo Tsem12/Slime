@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public Animator animator;
+
     private PlayerHealth playerHealth;
     private EnemyHealth enemyHealth;
     private bool isAttacking = false;
     private bool isDead;
     private Rigidbody2D rb;
     private bool canAttack;
+
 
     [SerializeField] private float coolDown;
 

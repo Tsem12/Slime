@@ -3,6 +3,8 @@ using UnityEngine;
 using TMPro;
 public class EnemyHealth : MonoBehaviour
 {
+    [HideInInspector] public bool isDashed;
+
     public int enemyHealth;
     public Animator animator;
     private EnemyDamage enemyDamage;
