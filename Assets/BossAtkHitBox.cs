@@ -6,6 +6,8 @@ public class BossAtkHitBox : MonoBehaviour
 {
     [HideInInspector] public bool isInRange;
     [HideInInspector] public GameObject player;
+    [HideInInspector] public GameObject missile;
+    [HideInInspector] public bool isGrounded;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +15,13 @@ public class BossAtkHitBox : MonoBehaviour
         {
             isInRange = true;
             player = collision.gameObject;
+        }
+        if (this.name == "Missile" && collision.CompareTag("platform"))
+        {
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        {
+            isGrounded = true;
         }
     }
 

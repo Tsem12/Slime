@@ -6,6 +6,7 @@ public class BossStart : MonoBehaviour
 {
     public Animator animator;
     [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject hpBar;
     public Collider2D cl;
 
 
@@ -26,9 +27,9 @@ public class BossStart : MonoBehaviour
         IEnumerator Init()
         {
             boss.SetActive(true);
+            hpBar.SetActive(true);
             yield return new WaitForSeconds(1);
             animator.SetBool("Entery", true);
-            yield return new WaitForSeconds(1);
             animator.SetBool("Idle", true);
         }
 }

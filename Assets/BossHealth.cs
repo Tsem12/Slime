@@ -9,20 +9,23 @@ public class BossHealth : MonoBehaviour
     public bool isInVulnerable;
     public bool isPhase2;
     public bool stopted;
+    public HealthBar healthBar;
+
     private Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        healthBar.SetMawHealth(200);
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log(health);
         if (isInVulnerable)
             return;
 
         health -= damage;
+        healthBar.SetHealth(health);
 
         if(health < 100 && !isPhase2)
         {
@@ -36,6 +39,7 @@ public class BossHealth : MonoBehaviour
             animator.SetTrigger("Dead");
         }
 
+        //Debug.Log(health);
     }
 
     public void Regen()
@@ -46,11 +50,13 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator RegenCycle()
     {
-        while(health < 200 || !stopted)
+        while(health < 200 && stopted == false)
         {
             health += 5;
+            healthBar.SetHealth(health);
             Debug.Log(health);
             yield return new WaitForSeconds(0.5f);
+
         }
         stopted = true;
         animator.SetTrigger("InitSecondPhase");

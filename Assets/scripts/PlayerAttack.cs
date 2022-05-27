@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking;
     public bool canAttack = true;
     public bool isFly;
-    public int playerDamage = 10;
+    public int playerDamage = 100;
 
     private Animator animator;
     private EnemyHealth enemyTarget ;
@@ -24,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         isAttacking = false;
         canAttack = true;
+
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Fly" || collision.tag != "Human" || collision.tag != "Golem" || collision.tag !="Boss")
+        if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem" || collision.tag == "Boss")
         {
             enemyTarget = null;
             bossTarget = null;

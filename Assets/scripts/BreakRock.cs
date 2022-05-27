@@ -52,7 +52,7 @@ public class BreakRock : MonoBehaviour
                     break;
             }
 
-
+            Debug.Log(chargeLvl);
         }
 
 
@@ -129,19 +129,22 @@ public class BreakRock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Destroyable") && chargeLvl > 0)
+        if (collision.CompareTag("Destroyable") && chargeLvl > 1)
         {
             collision.gameObject.SetActive(false);
-            switch (chargeLvl)
-            {
-                case 1:
-                    rb.velocity = new Vector2(0f, 0f);
-                    GameManager.isInputEnable = true;
-                    chargeLvl = 0;
-                    isDashing = false;
-                    break;
 
-            }
+            //rb.velocity = new Vector2(0f, 0f);
+            GameManager.isInputEnable = true;
+            //chargeLvl = 0;
+            isDashing = false;
+        }  
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name == "GraphicsGolemBoss" && chargeLvl > 0)
+        {
+            collision.GetComponent<BossHealth>().stopted = true;
         }
     }
 }

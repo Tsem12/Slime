@@ -7,9 +7,12 @@ public class EnemyHealth : MonoBehaviour
     public Animator animator;
     private EnemyDamage enemyDamage;
 
+    [SerializeField] private HealthBar healthBar;
+
     private void Start()
     {
         enemyDamage = GetComponentInChildren<EnemyDamage>();
+        healthBar.SetMawHealth(enemyHealth);
     }
 
     private void Update()
@@ -19,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damageAmount, float knockbackX, float knockbackY)
     {
         enemyHealth -= damageAmount;
+        healthBar.SetHealth(enemyHealth);
         KnockBack(knockbackX, knockbackY);
         if (enemyHealth <= 0)
         {

@@ -17,16 +17,28 @@ public class GolemBossIdle : StateMachineBehaviour
         //animator.GetComponent<BossHealth>.
 
         if (animator.GetComponentInChildren<BossAtkHitBox>().isInRange == true && !animator.GetComponent<BossHealth>().isPhase2)
+        {
             animator.SetBool("Melee", true);
+            animator.SetBool("Distance", false);
+        }
         else if(animator.GetComponentInChildren<BossAtkHitBox>().isInRange == true && animator.GetComponent<BossHealth>().isPhase2)
+        {
             animator.SetBool("MeleeP2", true);
+            animator.SetBool("Laser", false);
+        }
 
         else
         {
-            if(!animator.GetComponent<BossHealth>().isPhase2)
+            if (!animator.GetComponent<BossHealth>().isPhase2)
+            {
+                animator.SetBool("Melee", false);
                 animator.SetBool("Distance", true);
+            }
             else
+            {
                 animator.SetBool("Laser", true);
+                animator.SetBool("MeleeP2", false);
+            }
         }
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

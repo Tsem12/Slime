@@ -9,10 +9,10 @@ public class EnemyDamage : MonoBehaviour
     private EnemyHealth enemyHealth;
     private bool isAttacking = false;
     private bool isDead;
-    [SerializeField]
-    private float coolDown;
     private Rigidbody2D rb;
     private bool canAttack;
+
+    [SerializeField] private float coolDown;
 
     private void Start()
     {
@@ -28,6 +28,17 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
+
+    public void EnemyDealDamage(int damage)
+    {
+        isDead = gameObject.GetComponentInParent<EnemyPatrol>().isDead;
+        if (!isDead)
+        {
+            playerHealth = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(10);
+        }
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && isAttacking == false && !isDead)
@@ -43,17 +54,6 @@ public class EnemyDamage : MonoBehaviour
         {
             canAttack = false;
         }
-    }
-
-    public void EnemyDealDamage(int damage)
-    {
-        isDead = gameObject.GetComponentInParent<EnemyPatrol>().isDead;
-        if (!isDead)
-        {
-            playerHealth = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(10);
-        }
-
     }
 
     IEnumerator Damage()
