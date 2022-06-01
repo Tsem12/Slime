@@ -69,6 +69,7 @@ public class MissileLauncher : MonoBehaviour
         if (Input.GetKey(KeyCode.X))
         {
             dashCharge -= Time.deltaTime;
+            rb.velocity = Vector2.zero;
 
             if (dashCharge <= 2)
                 chargeParticule.SetActive(true);
