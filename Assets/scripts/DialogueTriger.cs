@@ -18,8 +18,8 @@ public class DialogueTriger : MonoBehaviour
 
     public void TrigerDialogue()
     {
-        DialogueManager.instance.image.color = spriteRenderer.color;
         DialogueManager.instance.StartDialogue(dialogue, this);
+        DialogueManager.instance.image.color = spriteRenderer.color;
         if (dialogue.isDialogueFix)
         {
             DialogueManager.instance.isDialogueFix = true;

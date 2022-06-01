@@ -25,11 +25,6 @@ public class MissileBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnDisable()
-    {
-        knockback = false;
-    }
-
     void Update()
     {
 

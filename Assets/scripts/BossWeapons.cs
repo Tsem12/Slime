@@ -34,6 +34,8 @@ public class BossWeapons : MonoBehaviour
 
             player.GetComponentInParent<PlayerHealth>().TakeDamage(meleeDamage);
             int kbDirection = transform.eulerAngles.y == 0 ? kbForce : -kbForce;
+            Debug.Log(kbForce);
+            Debug.Log(transform.eulerAngles.y);
             GameManager.instance.isInputEnable = false;
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(kbDirection, 150));

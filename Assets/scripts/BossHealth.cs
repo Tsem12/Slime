@@ -56,6 +56,7 @@ public class BossHealth : MonoBehaviour
         {
             health += 5;
             healthBar.SetHealth(health);
+            Debug.Log(health);
             yield return new WaitForSeconds(0.5f);
 
         }
