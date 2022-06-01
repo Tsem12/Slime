@@ -7,16 +7,19 @@ public class EnemyPatrol : MonoBehaviour
    
     public float speed;
     public Transform[] waypoints;
-
     public SpriteRenderer graphics;
+    public SwitchCharacter switchCharacter;
+    [HideInInspector] public bool isLeft;
+
     private Transform target;
     private int destPoint = 0;
     public bool isDead = false;
-    public bool isChasing = true;
+    public bool isPatrol = true;
 
     void Start()
     {
         target = waypoints[0];
+        switchCharacter = FindObjectOfType<SwitchCharacter>();
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         //Debug.Log(isDead);
         Vector3 dir = target.position - transform.position;
-        if (!isDead && isChasing == true)
+        if (!isDead && isPatrol == true)
         {
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -34,6 +37,12 @@ public class EnemyPatrol : MonoBehaviour
                 target = waypoints[destPoint];
                 graphics.flipX = !graphics.flipX;
             }
+        }else if (isPatrol == false && !isDead)
+        {
+            if (transform.position.x - switchCharacter.activeCharacter.transform.position.x < 0)
+                graphics.flipX = false;
+            else
+                graphics.flipX = true;
         }
         
 

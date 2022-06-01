@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class SwitchCharacter : MonoBehaviour
 {
+    public static SwitchCharacter instance;
     public List<GameObject> charList;
-    public GameObject activeCharacter;
+    [HideInInspector] public GameObject activeCharacter;
     public CameraFollow cameraFollow;
     public GameObject selectionWeel;
 
     private GameObject previusCharacter;
 
-    private void Start()
+    private void Awake()
     {
         activeCharacter = charList[0];
+        if(instance == null)
+            instance = this;
     }
 
 
     public void ChangeCharacter(int id)
     {
-        GameManager.isInputEnable = false;
+        GameManager.instance.isInputEnable = false;
         selectionWeel.SetActive(false);
         previusCharacter = activeCharacter;
         previusCharacter.SetActive(false);
@@ -28,7 +31,7 @@ public class SwitchCharacter : MonoBehaviour
         activeCharacter.transform.position = previusCharacter.transform.position;
         activeCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
         cameraFollow.playerCamera = activeCharacter;
-        GameManager.isInputEnable = true;
+        GameManager.instance.isInputEnable = true;
     }
 
 

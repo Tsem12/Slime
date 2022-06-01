@@ -7,6 +7,11 @@ public class BossFlip : MonoBehaviour
     public SwitchCharacter switchCharacter;
     [HideInInspector] public bool isLeft;
 
+    private void Start()
+    {
+        switchCharacter = FindObjectOfType<SwitchCharacter>();
+    }
+
     public void LookAtPlayer()
     {
         if(transform.position.x - switchCharacter.activeCharacter.transform.position.x < 0)

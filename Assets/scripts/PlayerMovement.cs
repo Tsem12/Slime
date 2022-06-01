@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isHuman;
     public bool isFly;
     public bool isRenf;
-    [HideInInspector]
-    public bool canFlip = true;
+    [HideInInspector] public bool canFlip = true;
+    [HideInInspector] public bool isPlanning;
+    [HideInInspector] public int direction;
 
     public Rigidbody2D rb;
     public Animator animator;
+    public Animator indicator;
     public SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
@@ -36,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     {
         collisionCollider = GetComponent<CapsuleCollider2D>();
     }
+    private void OnEnable()
+    {
+        indicator.SetTrigger("reset");
+    }
+
     void Update()
     {
 
@@ -67,16 +74,18 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsGrounded", false);
         }
 
-        if (Input.GetButton("Jump") && isGrounded == false && canPlane == true && GameManager.isInputEnable == true && isFly == true)
+        if (Input.GetButton("Jump") && isGrounded == false && canPlane == true && GameManager.instance.isInputEnable == true && isFly == true)
         {
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isPlanning = true;
 
         }
         if (Input.GetButtonUp("Jump"))
         {
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isPlanning = false;
         }
 
 
@@ -88,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        if (GameManager.isInputEnable == true)
+        if (GameManager.instance.isInputEnable == true)
             MovePlayer(horizontalMovement);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
@@ -118,10 +127,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+            direction = 1;
         }
         else if (Input.GetKeyDown(KeyCode.Q) && canFlip == true)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            direction = -1;
         }
     }
 

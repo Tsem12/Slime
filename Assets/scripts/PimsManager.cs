@@ -10,6 +10,8 @@ public class PimsManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Destroy(gameObject);
+            GameManager.instance.pimsAmount += 1;
+            Debug.Log(GameManager.instance.pimsAmount);
         }
     }
 }

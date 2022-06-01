@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public static bool isInputEnable = true;
+    public bool isInputEnable = true;
+    public int pimsAmount;
+    public int moneyAmount;
+
     public GameObject selectionWeel;
     public PlayerAttack playerAttack;
     public SwitchCharacter switchCharacter;
@@ -24,14 +27,13 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && isInputEnable)
         {
             selectionWeel.SetActive(true);
             Time.timeScale = 0.1f;
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 pauseCanva.SetActive(true);
-                GameManager.isInputEnable = false;
+                isInputEnable = false;
                 isPause = true;
 
             }
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 pauseCanva.SetActive(false);
-                GameManager.isInputEnable = true;
+                isInputEnable = true;
                 isPause = false;
             }
         }

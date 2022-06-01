@@ -9,7 +9,6 @@ public class GolemBossMissile : StateMachineBehaviour
     private GameObject missileStartPoint;
     private Vector3 player;
     private Rigidbody2D rb;
-    [SerializeField] private float speed = 200f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

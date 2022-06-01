@@ -28,6 +28,9 @@ public class MissileBehaviour : MonoBehaviour
     void Update()
     {
 
+        if(!isShooting)
+            transform.position = initPos.position;
+
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
@@ -98,7 +101,7 @@ public class MissileBehaviour : MonoBehaviour
 
     public void Init()
     {
-        this.transform.position = initPos.position;
+        transform.position = initPos.position;
         rb.velocity = Vector2.zero;
 
     }
@@ -118,20 +121,19 @@ public class MissileBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Destroyable") && chargeLvl > 0 && isShooting == true)
         {
-            knockback = false;
             animator.SetTrigger("Idle");
             playerMouvement.canFlip = true;
             Collision(chargeLvl);
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            chargeLvl = 0;
 
         }
         else if(collision.tag != "Destroyable" && collision.tag != "Player" && collision.tag != "Untagged" && isShooting == true)
         {
-            knockback = false;
             animator.SetTrigger("Idle");
             playerMouvement.canFlip = true;
-            this.gameObject.SetActive(false);
-            Debug.Log(collision.gameObject.name);
+            gameObject.SetActive(false);
+            chargeLvl = 0;
         }
     }
 

@@ -7,7 +7,6 @@ public class EnemyDamage : MonoBehaviour
     public Animator animator;
 
     private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
     private bool isAttacking = false;
     private bool isDead;
     private Rigidbody2D rb;
@@ -18,7 +17,6 @@ public class EnemyDamage : MonoBehaviour
 
     private void Start()
     {
-        enemyHealth = GetComponentInParent<EnemyHealth>();
         rb = GetComponentInParent<Rigidbody2D>();
     }
     private void Update()
@@ -43,13 +41,12 @@ public class EnemyDamage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && isAttacking == false && !isDead)
+        if (collision.CompareTag("Player") && !isDead)
         {
             canAttack = true;
         }
 
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

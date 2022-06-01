@@ -11,6 +11,7 @@ public class BreakRock : MonoBehaviour
     private Rigidbody2D rb;
     private float dashCharge = 3f;
     private PlayerAttack playerAttack;
+    private PlayerMovement playerMovement;
     private int chargeLvl = 0;
     private Animator animator;
     private float postionCheck;
@@ -22,6 +23,7 @@ public class BreakRock : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerAttack = GetComponent<PlayerAttack>();
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -37,7 +39,7 @@ public class BreakRock : MonoBehaviour
                     if(postionCheck - newPos <= -1.5f || postionCheck - newPos >= 1.5f)
                     {
                         rb.velocity = new Vector2(0f, 0f);
-                        GameManager.isInputEnable = true;
+                        GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
                         EmptyArray();
@@ -47,15 +49,13 @@ public class BreakRock : MonoBehaviour
                     if (postionCheck - newPos <= -3f || postionCheck - newPos >= 3f)
                     {
                         rb.velocity = new Vector2(0f, 0f);
-                        GameManager.isInputEnable = true;
+                        GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
                         EmptyArray();
                     }
                     break;
             }
-
-            Debug.Log(chargeLvl);
         }
 
 
@@ -69,7 +69,7 @@ public class BreakRock : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             dashCharge -= Time.deltaTime;
-            GameManager.isInputEnable = false;
+            GameManager.instance.isInputEnable = false;
             rb.velocity = new Vector2(0f, 0f);
 
             if (dashCharge <= 2)
@@ -147,7 +147,7 @@ public class BreakRock : MonoBehaviour
             collision.gameObject.SetActive(false);
 
             rb.velocity = new Vector2(0f, 0f);
-            GameManager.isInputEnable = true;
+            GameManager.instance.isInputEnable = true;
             chargeLvl = 0;
             isDashing = false;
             EmptyArray();
@@ -161,7 +161,7 @@ public class BreakRock : MonoBehaviour
         if (collision.tag == "platform" || collision.tag == "Enemy")
         {
             rb.velocity = new Vector2(0f, 0f);
-            GameManager.isInputEnable = true;
+            GameManager.instance.isInputEnable = true;
             chargeLvl = 0;
             isDashing = false;
             EmptyArray();
@@ -180,7 +180,7 @@ public class BreakRock : MonoBehaviour
             if(collision.GetComponentInParent<EnemyHealth>().isDashed == false && chargeLvl > 0)
             {
                 enemiesDashed.Add(collision.gameObject);
-                collision.GetComponentInParent<EnemyHealth>().TakeDamage(10, 2, 2);
+                collision.GetComponentInParent<EnemyHealth>().TakeDamage(10, 2, 2, playerMovement.direction);
                 collision.GetComponentInParent<EnemyHealth>().isDashed = true;
             }
         }

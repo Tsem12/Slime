@@ -10,18 +10,17 @@ public class ChasePlayer : MonoBehaviour
     private Rigidbody2D rb;
 
     [SerializeField] private Transform mob;
-
     [SerializeField] private float range = 5;
-
     [SerializeField] private float yOffsetCorrection;
-
     [SerializeField] private BoxCollider2D hitBox;
+    private EnemyPatrol enemyPatrol;
 
     private bool isInArea;
 
     private void Start()
     {
         rb = GetComponentInChildren<Rigidbody2D>();
+        enemyPatrol = GetComponentInChildren<EnemyPatrol>();
     }
 
     private void Update()
@@ -30,7 +29,7 @@ public class ChasePlayer : MonoBehaviour
         Debug.DrawRay(new Vector2(mob.position.x - hitBox.size.x, mob.position.y - yOffsetCorrection), -mob.right * range, Color.red);
         Debug.DrawRay(new Vector2(mob.position.x + hitBox.size.x, mob.position.y - yOffsetCorrection), mob.right * range, Color.green);
 
-        if(isInArea == true)
+        if(isInArea == true && !enemyPatrol.isDead)
         {
 
             rb.velocity = Vector2.zero;
@@ -67,7 +66,7 @@ public class ChasePlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponentInChildren<EnemyPatrol>().isChasing = false;
+            GetComponentInChildren<EnemyPatrol>().isPatrol = false;
             isInArea = true;
         }
 
@@ -79,7 +78,7 @@ public class ChasePlayer : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             rb.velocity = Vector2.zero;
-            GetComponentInChildren<EnemyPatrol>().isChasing = true;
+            GetComponentInChildren<EnemyPatrol>().isPatrol = true;
             isInArea = false;
         }
 

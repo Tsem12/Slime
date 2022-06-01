@@ -30,27 +30,24 @@ public class AbsorptionEnemy : MonoBehaviour
                     case "Fly":
                         gameManager.GetComponent<WeelManager>().UnlockCharacter("fly");
                         playerHealth.Heal(10);
-                        Debug.Log("La chauve souris est MORTE je l'ai TUER");
                         break;
                     case "Golem":
                         gameManager.GetComponent<WeelManager>().UnlockCharacter("golem");
-                        Debug.Log("Le Golem est MORT je l'ai TUER");
                         playerHealth.Heal(20);
                         break;
                     case "Human":
                         gameManager.GetComponent<WeelManager>().UnlockCharacter("human");
-                        Debug.Log("L'humain est MORT je l'ai TUER");
                         playerHealth.Heal(30);
                         break;
                 }
                 Destroy(transform.parent.parent.parent.gameObject);
                 switchCharacter.activeCharacter.GetComponent<Animator>().SetTrigger("Absorb");
+                GameManager.instance.moneyAmount += Random.Range(2, 6);
             }
             else
             {
-                Animator[] animator = switchCharacter.activeCharacter.GetComponentsInChildren<Animator>();
-                animator[1].SetTrigger("NeedSlime");
-                
+                switchCharacter.activeCharacter.GetComponent<PlayerMovement>().indicator.SetTrigger("NeedSlime");
+ 
             }
 
 

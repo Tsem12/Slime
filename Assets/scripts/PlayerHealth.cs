@@ -6,11 +6,12 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    private SwitchCharacter switchCharacter;
 
     public HealthBar healthBar;
     void Start()
     {
-  
+        switchCharacter = FindObjectOfType<SwitchCharacter>();
         currentHealth = maxHealth;
         healthBar.SetMawHealth(maxHealth);
     }
@@ -35,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        StartCoroutine(AnimantionDamage());
         if (currentHealth <= 0)
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().StartDeath();
 
@@ -46,7 +48,17 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    
+    private IEnumerator AnimantionDamage()
+    {
+        SpriteRenderer spriteRenderer = switchCharacter.activeCharacter.GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(0.3f);
+        spriteRenderer.enabled = true;
+    }
 
 
 }

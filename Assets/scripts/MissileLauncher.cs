@@ -37,7 +37,7 @@ public class MissileLauncher : MonoBehaviour
                     if (postionCheck - newPos <= -1.5f || postionCheck - newPos >= 1.5f)
                     {
                         Debug.Log("pan");
-                        GameManager.isInputEnable = true;
+                        GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isShooting = false;
                     }
@@ -46,7 +46,7 @@ public class MissileLauncher : MonoBehaviour
                     if (postionCheck - newPos <= -3f || postionCheck - newPos >= 3f)
                     {
                         Debug.Log("pan2");
-                        GameManager.isInputEnable = true;
+                        GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isShooting = false;
                     }
@@ -63,7 +63,7 @@ public class MissileLauncher : MonoBehaviour
             missileBehaviour.Init();
             missileBehaviour.isShooting = false;
             rb.velocity = new Vector2(0f, 0f);
-            GameManager.isInputEnable = false;
+            GameManager.instance.isInputEnable = false;
         }
 
         if (Input.GetKey(KeyCode.X))
@@ -101,7 +101,7 @@ public class MissileLauncher : MonoBehaviour
             dashCharge = 3f;
             chargeParticule.SetActive(false);
             chargeParticule2.SetActive(false);
-            GameManager.isInputEnable = true;
+            GameManager.instance.isInputEnable = true;
 
         }
 

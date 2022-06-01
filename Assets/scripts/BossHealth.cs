@@ -10,6 +10,7 @@ public class BossHealth : MonoBehaviour
     public bool isPhase2;
     public bool stopted;
     public HealthBar healthBar;
+    [SerializeField] private BossGate gateToActivate;
 
     private Animator animator;
 
@@ -37,6 +38,7 @@ public class BossHealth : MonoBehaviour
         if(health < 0)
         {
             animator.SetTrigger("Dead");
+            gateToActivate.isBossDefeated = true;
         }
 
         //Debug.Log(health);

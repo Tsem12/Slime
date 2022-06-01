@@ -8,41 +8,25 @@ public class BossGate : MonoBehaviour
 
     private bool isOpen;
     [SerializeField] private GameObject elevatorObject;
-    [SerializeField] private BoxCollider2D bc;
-    
+    private BoxCollider2D boxColider;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        boxColider = GetComponentInParent<BoxCollider2D>();
+    }
+
     void Update()
     {
         if (isBossDefeated)
         {
             if (elevatorObject != null)
                 elevatorObject.GetComponent<Elevator>().isON = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.CompareTag("Player"))
-        {
-            if (isOpen == true)
-            {
-                bc.isTrigger = true;
-                GetComponentInParent<Animator>().SetBool("Open", true);
-            }
-            else
-            {
-                bc.isTrigger = false;
-                GetComponentInParent<Animator>().SetBool("Open", true);
-            }
-
-        
 
         }
-
-       
+            GetComponentInParent<Animator>().SetBool("Open", true);
+        boxColider.enabled = false;
     }
+
 
 }
 

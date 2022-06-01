@@ -8,6 +8,7 @@ public class BossWeapons : MonoBehaviour
     public int meleeDamage = 20;
     public SwitchCharacter switchCharacter;
     [HideInInspector] public Transform player;
+    [SerializeField] private int kbForce;
 
     [Header("Missile")]
     public GameObject missile;
@@ -28,7 +29,18 @@ public class BossWeapons : MonoBehaviour
         GetComponent<Animator>().SetBool("MeleeP2", false);
         
         if(GetComponentInChildren<BossAtkHitBox>().isInRange == true)
+        {
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
             player.GetComponentInParent<PlayerHealth>().TakeDamage(meleeDamage);
+            int kbDirection = transform.eulerAngles.y == 0 ? kbForce : -kbForce;
+            Debug.Log(kbForce);
+            Debug.Log(transform.eulerAngles.y);
+            GameManager.instance.isInputEnable = false;
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(kbDirection, 150));
+            GameManager.instance.isInputEnable = true;
+        }
     }
 
     public void MissileAttack()

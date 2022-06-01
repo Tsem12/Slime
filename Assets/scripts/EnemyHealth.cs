@@ -8,38 +8,49 @@ public class EnemyHealth : MonoBehaviour
     public int enemyHealth;
     public Animator animator;
     private EnemyDamage enemyDamage;
+    private EnemyPatrol enemyPatrol;
+    private Rigidbody2D rb;
+    private ChasePlayer chasePlayer;
+    private SpriteRenderer spriteRenderer;
+
 
     [SerializeField] private HealthBar healthBar;
 
     private void Start()
     {
-        enemyDamage = GetComponentInChildren<EnemyDamage>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.SetMawHealth(enemyHealth);
+        enemyPatrol = GetComponent<EnemyPatrol>();
+        enemyDamage = GetComponentInChildren<EnemyDamage>();
+        chasePlayer = GetComponentInParent<ChasePlayer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void TakeDamage(int damageAmount, float knockbackX, float knockbackY, int direction)
     {
-    }
-
-    public void TakeDamage(int damageAmount, float knockbackX, float knockbackY)
-    {
-        enemyHealth -= damageAmount;
-        healthBar.SetHealth(enemyHealth);
-        KnockBack(knockbackX, knockbackY);
-        if (enemyHealth <= 0)
+        if (!enemyPatrol.isDead)
         {
-            animator.SetBool("Death", true);
-            this.GetComponent<EnemyPatrol>().isDead = true;
-            this.GetComponentInChildren<EnemyDamage>().enabled = false;
-            this.GetComponentInChildren<AbsorptionEnemy>().enabled = true;
-            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-
+            enemyHealth -= damageAmount;
+            healthBar.SetHealth(enemyHealth);
+            if (enemyHealth <= 0)
+            {
+                animator.SetBool("Death", true);
+                enemyPatrol.isDead = true;
+                enemyDamage.enabled = false;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+            StartCoroutine(KnockBack(knockbackX, knockbackY, direction));
         }
     }
 
-    public void KnockBack(float xValue, float yValue)
+    public IEnumerator KnockBack(float xValue, float yValue, int direction)
     {
-        this.GetComponent<Rigidbody2D>().AddForce(new Vector2(xValue, yValue));
+        rb.AddForce(new Vector2(xValue * direction, yValue));
+        spriteRenderer.color = Color.red;
+        chasePlayer.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        chasePlayer.enabled = true;
+        spriteRenderer.color = Color.white;
     }
 
     public void DealDamage()
@@ -49,7 +60,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void AnimatorOff()
     {
-            animator.enabled = false;
+        animator.enabled = false;
 
     }
 

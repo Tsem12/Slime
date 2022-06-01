@@ -9,12 +9,12 @@ public class SwitchManager : MonoBehaviour
 
     public void DisableInputOn()
     {
-        GameManager.isInputEnable = false;
+        GameManager.instance.isInputEnable = false;
     }
 
     public void DisableInputOff()
     {
-        GameManager.isInputEnable = true;
+        GameManager.instance.isInputEnable = true;
     }
 
 

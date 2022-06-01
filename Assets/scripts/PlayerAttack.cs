@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float knockBackX = 200000000000000000000000000000000000000.5f;
-    public float knockBackY = 200000000000000000000000000000000000000.5f;
+    public float knockBackX;
+    public float knockBackY;
     public SwitchCharacter switchCharacter;
     private Rigidbody2D rb;
     public bool isAttacking;
@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
     private EnemyHealth enemyTarget ;
     private BossHealth bossTarget ;
     private bool canDamage;
+    private PlayerMovement playerMovement;
 
     void Awake()
     {
@@ -24,12 +25,13 @@ public class PlayerAttack : MonoBehaviour
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         isAttacking = false;
         canAttack = true;
+        playerMovement = GetComponent<PlayerMovement>();
 
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.isInputEnable == true && isAttacking == false && canAttack == true && isFly == false)
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.isInputEnable == true && isAttacking == false && canAttack == true && isFly == false)
         {
             LauchAttack();
         }
@@ -42,13 +44,13 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator Attack()
     {
-        GameManager.isInputEnable = false;
+        GameManager.instance.isInputEnable = false;
         isAttacking = true;
         rb.velocity = new Vector2(0.0f, 0.0f);
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
-        GameManager.isInputEnable = true;
+        GameManager.instance.isInputEnable = true;
 
     }
 
@@ -57,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
         if(canDamage == true)
         {
             if(enemyTarget != null)
-                enemyTarget.TakeDamage(playerDamage, knockBackX, knockBackY);
+                enemyTarget.TakeDamage(playerDamage, knockBackX, knockBackY, playerMovement.direction);
             if (bossTarget != null)
                 bossTarget.TakeDamage(playerDamage);
         }

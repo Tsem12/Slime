@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        if (canMooveBar)
+        if (canMooveBar && mob != null)
         {
             this.transform.position = new Vector3(mob.position.x, mob.position.y + yOffSet, mob.position.z);
         }
