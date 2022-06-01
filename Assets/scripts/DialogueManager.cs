@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Text message;
     public Image image;
     private Queue<string> sentences;
-    [SerializeField] private Animator animator;
+    public Animator animator;
     private DialogueTriger npcTriger;
     private bool isUIActive;
     public bool isDialogueFix;
@@ -62,6 +62,7 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             npcTriger.ChooseAction(npcTriger.dialogue.functionToExecute);
+            Debug.Log("sqdqsd");
             EndDialogue();
             return;
         }

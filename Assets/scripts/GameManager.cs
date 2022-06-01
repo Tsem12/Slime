@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int pimsAmount;
     public int moneyAmount;
 
+    public TextMeshProUGUI pimsCounter;
+    public TextMeshProUGUI coinCounter;
     public GameObject selectionWeel;
     public PlayerAttack playerAttack;
     public SwitchCharacter switchCharacter;
@@ -56,11 +59,13 @@ public class GameManager : MonoBehaviour
             Pause(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             switchCharacter.activeCharacter.transform.position = new Vector3(48.78f, 22.374f, 1.158906f);
         }
 
+        pimsCounter.text = pimsAmount.ToString();
+        coinCounter.text = moneyAmount.ToString();
 
 
     }

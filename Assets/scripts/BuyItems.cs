@@ -35,33 +35,18 @@ public class BuyItems : MonoBehaviour
                 costStr.color = Color.red;
             else
                 costStr.color = Color.white;
-        }
-
-
-        if (canTalk && !isActive)
-        {
-            if (SwitchCharacter.instance.activeCharacter.name == "Player_Human")
-            {
-                humanDialogue.TrigerDialogue();
-                isActive = true;
-            }
-            else
-            {
-                monsterDialogue.TrigerDialogue();
-                isActive = true;
-            }
-        }
+        }  
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == "Player_Human")
         {
-            canTalk = true;
+            humanDialogue.TrigerDialogue();
         }
         else if (collision.CompareTag("Player"))
         {
-            canTalk = true;
+            monsterDialogue.TrigerDialogue();
         }
     }
 
@@ -69,8 +54,8 @@ public class BuyItems : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            canTalk = false;
-            isActive = false;
+            //DialogueManager.instance.EndDialogue();
+ 
         }
     }
 }
