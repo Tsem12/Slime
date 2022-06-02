@@ -8,7 +8,6 @@ public class EnemyPatrol : MonoBehaviour
     public float speed;
     public Transform[] waypoints;
     public SpriteRenderer graphics;
-    public SwitchCharacter switchCharacter;
     [HideInInspector] public bool isLeft;
 
     private Transform target;
@@ -19,7 +18,6 @@ public class EnemyPatrol : MonoBehaviour
     void Start()
     {
         target = waypoints[0];
-        switchCharacter = FindObjectOfType<SwitchCharacter>();
     }
 
     // Update is called once per frame
@@ -39,7 +37,7 @@ public class EnemyPatrol : MonoBehaviour
             }
         }else if (isPatrol == false && !isDead)
         {
-            if (transform.position.x - switchCharacter.activeCharacter.transform.position.x < 0)
+            if (transform.position.x - SwitchCharacter.instance.activeCharacter.transform.position.x < 0)
                 graphics.flipX = false;
             else
                 graphics.flipX = true;

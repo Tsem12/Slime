@@ -1,24 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class ShopManager : MonoBehaviour
+public class BuyItems : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
+    [SerializeField] private TextMeshProUGUI costStr;
+    [SerializeField] private bool isPims;
     [SerializeField] private DialogueTriger humanDialogue;
     [SerializeField] private DialogueTriger monsterDialogue;
-    public GameObject[] children;
+    private int cost;
     private bool canTalk;
     private bool isActive;
-
-    private void Start()
+    void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        if(int.TryParse(costStr.text, out cost))
+            cost = int.Parse(costStr.text);
+        
     }
 
-    private void Update()
+    void Update()
     {
-        if (canTalk && Input.GetKeyDown(KeyCode.E))
+        if (!isPims)
+        {
+            if(GameManager.instance.moneyAmount < cost)
+                costStr.color = Color.red;
+            else
+                costStr.color = Color.white;
+        }
+        else
+        {
+            if (GameManager.instance.pimsAmount < cost)
+                costStr.color = Color.red;
+            else
+                costStr.color = Color.white;
+        }
+
+
+        if (canTalk && !isActive)
         {
             if (SwitchCharacter.instance.activeCharacter.name == "Player_Human")
             {
@@ -31,9 +51,6 @@ public class ShopManager : MonoBehaviour
                 isActive = true;
             }
         }
-
-        if(SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x < -1.5 || SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x > 6)
-            DialogueManager.instance.EndDialogue();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,6 +70,7 @@ public class ShopManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canTalk = false;
+            isActive = false;
         }
     }
 }

@@ -16,6 +16,7 @@ public class FallDamage : MonoBehaviour
     {
         switchCharacter = FindObjectOfType<SwitchCharacter>();
         playerHealth = GetComponent<PlayerHealth>();
+        fallStart = -100000;
     }
 
     private void Update()

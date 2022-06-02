@@ -22,6 +22,7 @@ public class SwitchCharacter : MonoBehaviour
 
     public void ChangeCharacter(int id)
     {
+        //Time.timeScale = 1;
         GameManager.instance.isInputEnable = false;
         selectionWeel.SetActive(false);
         previusCharacter = activeCharacter;
@@ -30,7 +31,6 @@ public class SwitchCharacter : MonoBehaviour
         activeCharacter.SetActive(true);
         activeCharacter.transform.position = previusCharacter.transform.position;
         activeCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
-        cameraFollow.playerCamera = activeCharacter;
         GameManager.instance.isInputEnable = true;
     }
 

@@ -15,7 +15,7 @@ public class BreakRock : MonoBehaviour
     private int chargeLvl = 0;
     private Animator animator;
     private float postionCheck;
-    private bool isDashing;
+    [HideInInspector] public bool isDashing;
     private List<GameObject> enemiesDashed = new List<GameObject>();
 
     private void Start()
@@ -42,6 +42,7 @@ public class BreakRock : MonoBehaviour
                         GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
+                        GameManager.instance.canMove = true;
                         EmptyArray();
                     }
                     break;
@@ -52,6 +53,7 @@ public class BreakRock : MonoBehaviour
                         GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
+                        GameManager.instance.canMove = true;
                         EmptyArray();
                     }
                     break;
@@ -126,6 +128,7 @@ public class BreakRock : MonoBehaviour
         }
         isDashing = true;
         playerAttack.LauchAttack();
+        GameManager.instance.canMove = false;
 
     }
 
@@ -150,6 +153,7 @@ public class BreakRock : MonoBehaviour
             GameManager.instance.isInputEnable = true;
             chargeLvl = 0;
             isDashing = false;
+            GameManager.instance.canMove = true;
             EmptyArray();
         }
 
@@ -164,6 +168,7 @@ public class BreakRock : MonoBehaviour
             GameManager.instance.isInputEnable = true;
             chargeLvl = 0;
             isDashing = false;
+            GameManager.instance.canMove = true;
             EmptyArray();
         }
     }

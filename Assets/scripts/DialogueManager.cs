@@ -10,11 +10,13 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private Text npcName;
     [SerializeField] private Text message;
+    public GameObject buyButton;
     public Image image;
     private Queue<string> sentences;
     public Animator animator;
     private DialogueTriger npcTriger;
     private bool isUIActive;
+    private bool isAttackDisable;
     public bool isDialogueFix;
 
     private void Update()
@@ -24,8 +26,23 @@ public class DialogueManager : MonoBehaviour
             GameManager.instance.isInputEnable = false;
             SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
-        else
+        else if (isUIActive && !isDialogueFix)
             GameManager.instance.isInputEnable = true;
+
+        if (isUIActive)
+        {
+            SwitchCharacter.instance.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
+            isAttackDisable = true;
+        }
+        else if(!isUIActive && isAttackDisable)
+        {
+            SwitchCharacter.instance.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
+            isAttackDisable = false;
+        }
+
+        if(sentences.Count >= 0 && Input.GetKeyDown(KeyCode.F))
+            Continue();
+
     }
 
     private void Awake()
@@ -62,7 +79,6 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             npcTriger.ChooseAction(npcTriger.dialogue.functionToExecute);
-            Debug.Log("sqdqsd");
             EndDialogue();
             return;
         }
@@ -86,5 +102,12 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool("isOpen", false);
         isUIActive = false;
+        GameManager.instance.isInputEnable = true;
+    }
+
+    public void BuyTriger()
+    {
+        npcTriger.GetComponent<BuyItems>().BuyItem();
+
     }
 }

@@ -27,6 +27,14 @@ public class DialogueTriger : MonoBehaviour
         else
             DialogueManager.instance.isDialogueFix = false;
 
+        if (dialogue.canBuy)
+        {
+            DialogueManager.instance.buyButton.SetActive(true);
+            Debug.Log("qsdqs");
+        }
+        else
+            DialogueManager.instance.buyButton.SetActive(false);
+
     }
 
     public void EndDialogue()

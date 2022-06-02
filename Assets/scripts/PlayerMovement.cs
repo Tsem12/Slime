@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     //private bool canDoubbleJump;
     private bool canPlane = true;
     private bool isJumping;
+    private bool canMove;
     private Collider2D collisionCollider;
 
     private void Start()
@@ -41,17 +42,21 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         indicator.SetTrigger("reset");
+        //GameManager.instance.isInputEnable = true;
+        GameManager.instance.canMove = true;
     }
 
     void Update()
     {
-
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             animator.SetTrigger("Jump");
             isJumping = true;
             canPlane = false;
         }
+
+        
+
 
         Flip(rb.velocity.x);
         float charactervelocity = Mathf.Abs(rb.velocity.x);
@@ -107,8 +112,11 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(float _horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
+        if (GameManager.instance.canMove)
+        {
+            Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
+        }
 
         if (isJumping == true)
         {

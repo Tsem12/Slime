@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public SwitchCharacter switchCharacter;
     public GameObject pauseCanva;
     public GameObject deafeatCanva;
+    [SerializeField] private GameObject miniMap;
+    [HideInInspector] public bool canMove;
 
     private bool isPause = false;
 
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab) && isInputEnable)
+        if (Input.GetKeyDown(KeyCode.Tab) && GameManager.instance.isInputEnable)
         {
             selectionWeel.SetActive(true);
             Time.timeScale = 0.1f;
@@ -61,11 +63,15 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            switchCharacter.activeCharacter.transform.position = new Vector3(48.78f, 22.374f, 1.158906f);
+            moneyAmount += 10;
+            pimsAmount += 10;
         }
 
-        pimsCounter.text = pimsAmount.ToString();
-        coinCounter.text = moneyAmount.ToString();
+        if(pimsCounter != null && coinCounter != null)
+        {
+            pimsCounter.text = pimsAmount.ToString();
+            coinCounter.text = moneyAmount.ToString();
+        }
 
 
     }
@@ -87,19 +93,19 @@ public class GameManager : MonoBehaviour
 
         public void Pause(bool isPause)
         {
-            if(isPause == true)
+            if(isPause)
             {
+                GameManager.instance.isInputEnable = false;
                 Time.timeScale = 0;
                 pauseCanva.SetActive(true);
-                isInputEnable = false;
                 isPause = true;
 
             }
             else
             {
+                GameManager.instance.isInputEnable = true;
                 Time.timeScale = 1;
                 pauseCanva.SetActive(false);
-                isInputEnable = true;
                 isPause = false;
             }
         }
@@ -124,6 +130,11 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         SceneManager.LoadScene("Win");
+    }
+
+    public void SetMiniMap(bool isActive)
+    {
+        miniMap.SetActive(isActive);
     }
 
 

@@ -16,5 +16,7 @@ public class Traveling : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(travelingSpeed, 0f);
+        if(transform.position.x > 52)
+            transform.position = new Vector2(19f, transform.position.y);
     }
 }

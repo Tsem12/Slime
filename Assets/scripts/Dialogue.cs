@@ -10,6 +10,7 @@ public class Dialogue
     public Sprite image;
     public int functionToExecute;
     public bool isDialogueFix;
+    public bool canBuy;
 
     [TextArea(3, 10), NonReorderable]
     public string[] sentences;
