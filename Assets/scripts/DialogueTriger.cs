@@ -56,6 +56,9 @@ public class DialogueTriger : MonoBehaviour
             case 2:
                 DesactiveShop();
                 break;
+            case 3:
+                BossFlee();
+                break;
         }
     }
 
@@ -83,6 +86,11 @@ public class DialogueTriger : MonoBehaviour
             StartCoroutine(Active(childrenList, false));
             DialogueManager.instance.isItemDisplay = false;
         }
+    }
+
+    private void BossFlee()
+    {
+        GetComponent<Animator>().SetTrigger("Flee");
     }
 
     private IEnumerator Active(GameObject[] childrenList, bool active)

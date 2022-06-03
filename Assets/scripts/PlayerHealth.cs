@@ -44,7 +44,10 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         StartCoroutine(AnimantionDamage());
         if (currentHealth <= 0)
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeath>().StartDeath();
+        {
+            SwitchCharacter.instance.activeCharacter.GetComponent<PlayerDeath>().StartDeath();
+            SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
     }
 

@@ -8,6 +8,7 @@ public class EnemyPatrol : MonoBehaviour
     public float speed;
     public Transform[] waypoints;
     public SpriteRenderer graphics;
+    public bool isStatic;
     [HideInInspector] public bool isLeft;
 
     private Transform target;
@@ -17,23 +18,27 @@ public class EnemyPatrol : MonoBehaviour
 
     void Start()
     {
-        target = waypoints[0];
+        if(!isStatic)
+            target = waypoints[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(isDead);
-        Vector3 dir = target.position - transform.position;
         if (!isDead && isPatrol == true)
         {
-            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-            if(Vector3.Distance(transform.position, target.position) < 0.3f)
+            if(!isStatic)
             {
-                destPoint = (destPoint + 1) % waypoints.Length;
-                target = waypoints[destPoint];
-                graphics.flipX = !graphics.flipX;
+                Vector3 dir = target.position - transform.position;
+                transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+                if(Vector3.Distance(transform.position, target.position) < 0.3f)
+                {
+                    destPoint = (destPoint + 1) % waypoints.Length;
+                    target = waypoints[destPoint];
+                    graphics.flipX = !graphics.flipX;
+                }
             }
         }else if (isPatrol == false && !isDead)
         {

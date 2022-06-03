@@ -14,9 +14,10 @@ public class DeathZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = SwitchCharacter.instance.activeCharacter;
             animator = player.GetComponent<Animator>();
             player.GetComponent<Rigidbody2D>().freezeRotation = true;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             animator.SetTrigger("Death");
         }
 

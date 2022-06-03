@@ -13,6 +13,7 @@ public class ChasePlayer : MonoBehaviour
     [SerializeField] private float range = 5;
     [SerializeField] private float yOffsetCorrection;
     [SerializeField] private BoxCollider2D hitBox;
+    [SerializeField] private bool isHuman;
     private EnemyPatrol enemyPatrol;
 
     private bool isInArea;
@@ -43,7 +44,8 @@ public class ChasePlayer : MonoBehaviour
                     if (hit.collider.tag == "Player")
                     {
                         rb.velocity = new Vector2( - chaseSpeed, 0f);
-                        //Debug.Log("Detected Left");
+                        if (isHuman)
+                            GetComponentInChildren<Animator>().SetTrigger("Run");
                     }
                         
                 }
@@ -55,10 +57,20 @@ public class ChasePlayer : MonoBehaviour
                     if (hit.collider.tag == "Player")
                     {
                         rb.velocity = new Vector2(chaseSpeed, 0f);
-                        //Debug.Log("Detected Right");
+                        if (isHuman)
+                            GetComponentInChildren<Animator>().SetTrigger("Run");
                     }
                 }
             }
+            if (isHuman)
+            {
+                if(hitLeft == null && hitRight == null)
+                {
+                    if (isHuman)
+                        GetComponentInChildren<Animator>().SetTrigger("Idle");
+                }
+            }
+
 
         }
     }

@@ -8,12 +8,8 @@ public class BossGate : MonoBehaviour
 
     private bool isOpen;
     [SerializeField] private GameObject elevatorObject;
-    private BoxCollider2D boxColider;
+    [SerializeField] private BoxCollider2D gateToOpen;
 
-    private void Start()
-    {
-        boxColider = GetComponentInParent<BoxCollider2D>();
-    }
 
     void Update()
     {
@@ -22,9 +18,9 @@ public class BossGate : MonoBehaviour
             if (elevatorObject != null)
                 elevatorObject.GetComponent<Elevator>().isON = true;
 
+        gateToOpen.enabled = false;
+        gateToOpen.gameObject.GetComponent<Animator>().SetBool("Open", true);
         }
-            GetComponentInParent<Animator>().SetBool("Open", true);
-        boxColider.enabled = false;
     }
 
 

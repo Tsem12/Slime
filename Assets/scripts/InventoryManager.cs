@@ -17,7 +17,6 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.instance.SetMiniMap(false);
         inventory.SetActive(false);
     }
     void Update()

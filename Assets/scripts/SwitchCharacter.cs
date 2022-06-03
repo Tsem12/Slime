@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SwitchCharacter : MonoBehaviour
 {
+    [HideInInspector] public bool isFlyUnlocked;
+    [HideInInspector] public bool isGolemUnlocked;
+    [HideInInspector] public bool isHumanUnlocked;
+    public DialogueTriger unlockFly;
+    public DialogueTriger unlockGolem;
+    public DialogueTriger unlockHuman;
+
     public static SwitchCharacter instance;
     public List<GameObject> charList;
     [HideInInspector] public GameObject activeCharacter;
