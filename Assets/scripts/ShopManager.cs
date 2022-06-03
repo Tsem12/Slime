@@ -10,6 +10,8 @@ public class ShopManager : MonoBehaviour
     public GameObject[] children;
     private bool canTalk;
     private bool isActive;
+    private bool isInShop;
+    private bool leaveShop = true;
 
     private void Start()
     {
@@ -32,8 +34,20 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        if(SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x < -1.5 || SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x > 6)
+        if (SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x < -1.5 || SwitchCharacter.instance.activeCharacter.transform.position.x - transform.position.x > 6 || SwitchCharacter.instance.activeCharacter.transform.position.y - transform.position.y < -1 || SwitchCharacter.instance.activeCharacter.transform.position.y - transform.position.y > 1)
+        {
+            isInShop = false;
+        }
+        else
+        {
+            isInShop = true;
+            leaveShop = true;
+        }
+        if (!isInShop && leaveShop)
+        {
             DialogueManager.instance.EndDialogue();
+            leaveShop = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

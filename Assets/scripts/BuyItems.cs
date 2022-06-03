@@ -56,7 +56,7 @@ public class BuyItems : MonoBehaviour
                 sold.SetActive(true);
                 isBuy = true;
                 GameManager.instance.moneyAmount -= cost;
-                skin.GetSkin(isPims);
+                skin.GetSkin(false);
             }
             else if(isBuy)
                 alreadyBuy.TrigerDialogue();
@@ -71,6 +71,7 @@ public class BuyItems : MonoBehaviour
                 sold.SetActive(true);
                 isBuy = true;
                 GameManager.instance.pimsAmount -= cost;
+                skin.GetSkin(true);
             }
             else if (isBuy)
                 alreadyBuy.TrigerDialogue();

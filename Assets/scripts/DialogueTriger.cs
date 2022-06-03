@@ -30,7 +30,6 @@ public class DialogueTriger : MonoBehaviour
         if (dialogue.canBuy)
         {
             DialogueManager.instance.buyButton.SetActive(true);
-            Debug.Log("qsdqs");
         }
         else
             DialogueManager.instance.buyButton.SetActive(false);

@@ -50,7 +50,7 @@ public class BreakRock : MonoBehaviour
                     if (postionCheck - newPos <= -3f || postionCheck - newPos >= 3f)
                     {
                         rb.velocity = new Vector2(0f, 0f);
-                        GameManager.instance.isInputEnable = true;
+                       GameManager.instance.isInputEnable = true;
                         chargeLvl = 0;
                         isDashing = false;
                         GameManager.instance.canMove = true;

@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    [HideInInspector] public bool closeInventory;
     public static InventoryManager instance;
     public GameObject inventory;
     private bool isInventoryOpen;
+    
 
     private void Awake()
     {
         if(instance == null)
             instance = this;
     }
+    private void Start()
+    {
+        GameManager.instance.SetMiniMap(false);
+        inventory.SetActive(false);
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && GameManager.instance.isInputEnable || closeInventory || isInventoryOpen && Input.GetKeyDown(KeyCode.I))
         {
             inventory.SetActive(!inventory.activeSelf);
+
+            if(closeInventory)
+                inventory.SetActive(false);
 
             if (inventory.activeSelf)
             {
@@ -33,7 +43,8 @@ public class InventoryManager : MonoBehaviour
             }
 
             if (isInventoryOpen)
-                SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = Vector2.zero; 
+                SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            closeInventory = false;
         }
     }
 }
