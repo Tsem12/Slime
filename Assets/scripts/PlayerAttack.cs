@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private EnemyHealth enemyTarget ;
     private BossHealth bossTarget ;
+    private BossHumanHealth bossHumanTarget ;
     private bool canDamage;
     private PlayerMovement playerMovement;
 
@@ -60,8 +61,10 @@ public class PlayerAttack : MonoBehaviour
         {
             if(enemyTarget != null)
                 enemyTarget.TakeDamage(playerDamage, knockBackX, knockBackY, playerMovement.direction);
-            if (bossTarget != null)
+            else if (bossTarget != null)
                 bossTarget.TakeDamage(playerDamage);
+            else if (bossHumanTarget != null)
+                bossHumanTarget.TakeDamage(playerDamage);
         }
     }
 
@@ -74,8 +77,16 @@ public class PlayerAttack : MonoBehaviour
         }
         else if (collision.tag == "Boss")
         {
-            bossTarget = collision.GetComponentInParent<BossHealth>();
-            canDamage = true;
+            if(collision.name == "GraphicsHumanBoss")
+            {
+                bossHumanTarget = collision.GetComponentInParent<BossHumanHealth>();
+                canDamage = true;
+            }
+            else
+            {
+                bossTarget = collision.GetComponentInParent<BossHealth>();
+                canDamage = true;
+            }
         }
 
     }

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class BossWeapons : MonoBehaviour
 {
-    public int laserDamage = 2;
+
+
     public int meleeDamage = 20;
-    public SwitchCharacter switchCharacter;
     [HideInInspector] public Transform player;
     [SerializeField] private int kbForce;
 
-    [Header("Missile")]
+
+    [Header("Golem")]
+    public int laserDamage = 2;
     public GameObject missile;
     [HideInInspector] public float angle;
     [HideInInspector] public Vector2 target;
+
 
 
 
@@ -33,11 +36,7 @@ public class BossWeapons : MonoBehaviour
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
             player.GetComponentInParent<PlayerHealth>().TakeDamage(meleeDamage);
-            int kbDirection = transform.eulerAngles.y == 0 ? kbForce : -kbForce;
-            GameManager.instance.isInputEnable = false;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(kbDirection, 150));
-            GameManager.instance.isInputEnable = true;
+            StartCoroutine(Knockback(rb));
         }
     }
 
@@ -45,7 +44,7 @@ public class BossWeapons : MonoBehaviour
     {
         missile.SetActive(true);
 
-        player = switchCharacter.activeCharacter.transform.Find("Feet");
+        player = SwitchCharacter.instance.activeCharacter.transform.Find("Feet");
         target = new Vector2(player.position.x - transform.position.x, player.position.y - transform.position.y);
         angle = Mathf.Atan2(player.position.y - transform.position.y, player.position.x - transform.position.x) * Mathf.Rad2Deg;
         missile.transform.rotation = Quaternion.Euler(0, 0, angle );
@@ -56,5 +55,15 @@ public class BossWeapons : MonoBehaviour
     public void DoDamage(int damage)
     {
         player.GetComponentInParent<PlayerHealth>().TakeDamage(damage);
+    }
+
+    private IEnumerator Knockback(Rigidbody2D rb)
+    {
+        int kbDirection = transform.eulerAngles.y == 0 ? kbForce : -kbForce;
+        GameManager.instance.isInputEnable = false;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(kbDirection, 150));
+        yield return new WaitForSeconds(0.5f);
+        GameManager.instance.isInputEnable = true;
     }
 }

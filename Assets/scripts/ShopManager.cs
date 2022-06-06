@@ -5,11 +5,10 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
-    [SerializeField] private DialogueTriger humanDialogue;
-    [SerializeField] private DialogueTriger monsterDialogue;
+    [SerializeField] private DialogueTrigger humanDialogue;
+    [SerializeField] private DialogueTrigger monsterDialogue;
     public GameObject[] children;
     private bool canTalk;
-    private bool isActive;
     private bool isInShop;
     private bool leaveShop = true;
 
@@ -25,12 +24,10 @@ public class ShopManager : MonoBehaviour
             if (SwitchCharacter.instance.activeCharacter.name == "Player_Human")
             {
                 humanDialogue.TrigerDialogue();
-                isActive = true;
             }
             else
             {
                 monsterDialogue.TrigerDialogue();
-                isActive = true;
             }
         }
 

@@ -8,6 +8,7 @@ public class MissileLauncher : MonoBehaviour
     public GameObject chargeParticule;
     public GameObject chargeParticule2;
     public MissileBehaviour missileBehaviour;
+    public bool missileEnabled;
 
     private Rigidbody2D rb;
     private PlayerAttack playerAttack;
@@ -55,7 +56,7 @@ public class MissileLauncher : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && missileEnabled)
         {
             animator.SetTrigger("ChargeMissile");
             missile.SetActive(true);
@@ -66,7 +67,7 @@ public class MissileLauncher : MonoBehaviour
             GameManager.instance.isInputEnable = false;
         }
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X) && missileEnabled)
         {
             dashCharge -= Time.deltaTime;
             rb.velocity = Vector2.zero;
@@ -80,7 +81,7 @@ public class MissileLauncher : MonoBehaviour
 
         }
 
-        if (Input.GetKeyUp(KeyCode.X))
+        if (Input.GetKeyUp(KeyCode.X) && missileEnabled)
         {
             if (dashCharge > 2)
             {

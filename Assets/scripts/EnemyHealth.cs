@@ -28,14 +28,17 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount, float knockbackX, float knockbackY, int direction)
     {
-        if (!enemyPatrol.isDead)
+        if (!GetComponentInChildren<AbsorptionEnemy>().isDead)
         {
             enemyHealth -= damageAmount;
             healthBar.SetHealth(enemyHealth);
             if (enemyHealth <= 0)
             {
                 animator.SetBool("Death", true);
-                enemyPatrol.isDead = true;
+                if(GetComponentInParent<ChasePlayer>().isHuman)
+                    animator.SetTrigger("Death 0");
+                GetComponentInChildren<AbsorptionEnemy>().isDead = true;
+                GetComponentInParent<ChasePlayer>().enabled = false;
                 enemyDamage.enabled = false;
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }

@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class BossFlip : MonoBehaviour
 {
-    public SwitchCharacter switchCharacter;
     [HideInInspector] public bool isLeft;
 
-    private void Start()
-    {
-        switchCharacter = FindObjectOfType<SwitchCharacter>();
-    }
 
     public void LookAtPlayer()
     {
-        if(transform.position.x - switchCharacter.activeCharacter.transform.position.x < 0)
+        if(transform.position.x - SwitchCharacter.instance.activeCharacter.transform.position.x < 0)
         {
             transform.eulerAngles = new Vector3(0,0,0);
             isLeft = false;

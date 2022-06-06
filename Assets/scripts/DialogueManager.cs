@@ -14,17 +14,18 @@ public class DialogueManager : MonoBehaviour
     public Image image;
     private Queue<string> sentences;
     public Animator animator;
-    private DialogueTriger npcTriger;
+    private DialogueTrigger npcTriger;
     private bool isUIActive;
     private bool isAttackDisable;
     public bool isDialogueFix;
 
     private void Update()
     {
+
         if (isUIActive && isDialogueFix)
         {
             GameManager.instance.isInputEnable = false;
-            SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, SwitchCharacter.instance.activeCharacter.GetComponent<Rigidbody2D>().velocity.y);
         }
         else if (isUIActive && !isDialogueFix)
             GameManager.instance.isInputEnable = true;
@@ -55,9 +56,9 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue, DialogueTriger triger)
+    public void StartDialogue(Dialogue dialogue, DialogueTrigger trigger)
     {
-        npcTriger = triger;
+        npcTriger = trigger;
 
         animator.SetBool("isOpen", true);
         isUIActive = true;
@@ -94,7 +95,7 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             message.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return null;
         }
     }
 

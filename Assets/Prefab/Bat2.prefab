@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 994878301065663934}
+  chasePlayer: {fileID: 994878301147782594}
   coolDown: 2
 --- !u!114 &994878300495595719
 MonoBehaviour:
@@ -90,9 +91,7 @@ MonoBehaviour:
   isFlyUnlocked: 0
   isGolemUnlocked: 0
   isHumanUnlocked: 0
-  unlockFly: {fileID: 0}
-  unlockGolem: {fileID: 0}
-  unlockHuman: {fileID: 0}
+  isDead: 0
 --- !u!1 &994878300562661313
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +434,7 @@ MonoBehaviour:
   - {fileID: 994878300603911640}
   - {fileID: 994878301439701212}
   graphics: {fileID: 994878301065663931}
+  isStatic: 0
   isLeft: 0
   isDead: 0
   isPatrol: 1
@@ -571,6 +571,8 @@ MonoBehaviour:
   range: 5
   yOffsetCorrection: 0.72
   hitBox: {fileID: 994878301874660956}
+  isHuman: 0
+  canMoove: 1
 --- !u!1 &994878301439701215
 GameObject:
   m_ObjectHideFlags: 0

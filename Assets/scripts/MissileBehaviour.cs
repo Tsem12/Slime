@@ -36,7 +36,7 @@ public class MissileBehaviour : MonoBehaviour
         if(!isShooting)
             transform.position = initPos.position;
 
-        lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        lookDirection = GameManager.instance.activeCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
         if (parent.transform.eulerAngles.y == 0 && isShooting == false)
@@ -122,6 +122,23 @@ public class MissileBehaviour : MonoBehaviour
         }
     }
 
+    private void EnemyCollision(float radius)
+    {
+        RaycastHit2D[] hits;
+        hits = Physics2D.CircleCastAll(transform.position, radius - 0.2f, Vector2.right, radius - 0.2f);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.tag == "Enemy" || hit.collider.tag == "Boss")
+            {
+                if (hit.collider.GetComponent<EnemyHealth>())
+                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(10 * chargeLvl, 0, 0, 0);
+
+                else if (hit.collider.GetComponent<BossHumanHealth>())
+                    hit.collider.GetComponent<BossHumanHealth>().TakeDamage(20 * chargeLvl);
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Destroyable") && chargeLvl > 0 && isShooting == true)
@@ -137,6 +154,7 @@ public class MissileBehaviour : MonoBehaviour
         {
             animator.SetTrigger("Idle");
             playerMouvement.canFlip = true;
+            EnemyCollision(chargeLvl);
             gameObject.SetActive(false);
             chargeLvl = 0;
         }

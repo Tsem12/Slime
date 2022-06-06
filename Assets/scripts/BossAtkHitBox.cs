@@ -33,4 +33,16 @@ public class BossAtkHitBox : MonoBehaviour
             player = null;
         }
     }
+
+    /// <summary>
+    /// Active or desactive boss attack hit box
+    /// </summary>
+    /// <param name="isActive"></param>
+    public void BoxColliderEnabler(int isActive)
+    {
+        if(isActive == 1)
+            GetComponent<BoxCollider2D>().enabled = true;
+        else
+            GetComponent<BoxCollider2D>().enabled = false;
+    }
 }

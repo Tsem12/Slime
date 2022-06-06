@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class AbsorptionEnemy : MonoBehaviour
 {
+    public bool isDead;
     public PlayerHealth playerHealth;
     [HideInInspector] public bool isFlyUnlocked;
     [HideInInspector] public bool isGolemUnlocked;
     [HideInInspector] public bool isHumanUnlocked;
 
-    private DialogueTriger unlockFly;
-    private DialogueTriger unlockGolem;
-    private DialogueTriger unlockHuman;
+    private DialogueTrigger unlockFly;
+    private DialogueTrigger unlockGolem;
+    private DialogueTrigger unlockHuman;
     private string collisionTag;
+    private int bossMoney;
     private GameObject gameManager;
     private bool canAbsorb;
     private SwitchCharacter switchCharacter;
-    [SerializeField] private bool isDead;
+    [SerializeField] private GameObject golemPlayer;
+    [SerializeField] private GameObject humanPlayer;
 
     private void Start()
     {
@@ -28,7 +31,7 @@ public class AbsorptionEnemy : MonoBehaviour
     private void Update()
     {
         //Debug.Log(canAbsorb);
-        if (Input.GetKeyDown(KeyCode.E) && canAbsorb == true && GetComponentInParent<EnemyPatrol>().isDead == true || Input.GetKeyDown(KeyCode.E) && canAbsorb == true && isDead)
+        if (Input.GetKeyDown(KeyCode.E) && canAbsorb == true && isDead)
         {
             if(switchCharacter.activeCharacter.name == "Player")
             {
@@ -42,6 +45,7 @@ public class AbsorptionEnemy : MonoBehaviour
                             SwitchCharacter.instance.isFlyUnlocked = true;
                         }
                         playerHealth.Heal(10);
+                        Destroy(transform.parent.parent.parent.gameObject);
                         break;
                     case "Golem":
                         if (!SwitchCharacter.instance.isGolemUnlocked)
@@ -51,6 +55,7 @@ public class AbsorptionEnemy : MonoBehaviour
                             SwitchCharacter.instance.isGolemUnlocked = true;
                         }
                         playerHealth.Heal(20);
+                        Destroy(transform.parent.parent.parent.gameObject);
                         break;
                     case "Human":
                         if (!SwitchCharacter.instance.isHumanUnlocked)
@@ -60,11 +65,29 @@ public class AbsorptionEnemy : MonoBehaviour
                             SwitchCharacter.instance.isHumanUnlocked = true;
                         }
                         playerHealth.Heal(30);
+                        Destroy(transform.parent.parent.parent.gameObject);
                         break;
+                    case "Boss":
+                        if (this.name == "GraphicsGolemBoss")
+                        {
+                            GetComponent<DialogueTrigger>().TrigerDialogue();
+                            golemPlayer.GetComponent<MissileLauncher>().missileEnabled = true;
+                            Destroy(transform.parent.gameObject);
+                            bossMoney = 20;
+                        }
+                        if (this.name == "GraphicsHumanBoss")
+                        {
+                            GetComponent<DialogueTrigger>().TrigerDialogue();
+                            humanPlayer.GetComponent<HumanMagic>().canMagic = true;
+                            Destroy(transform.parent.gameObject);
+                            bossMoney = 20;
+                        }
+                        playerHealth.Heal(100);
+                        break;
+
                 }
-                Destroy(transform.parent.parent.parent.gameObject);
                 switchCharacter.activeCharacter.GetComponent<Animator>().SetTrigger("Absorb");
-                GameManager.instance.moneyAmount += Random.Range(AbilitieManager.instance.minMoney, AbilitieManager.instance.maxMoney);
+                GameManager.instance.moneyAmount += Random.Range(2 + AbilitieManager.instance.minMoney, 6 + AbilitieManager.instance.maxMoney) + bossMoney;
             }
             else
             {

@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class ChasePlayer : MonoBehaviour
 {
+    public bool isHuman;
     public float chaseSpeed = 2f;
     public LayerMask collisionLayers;
+    [HideInInspector] public bool canMoove = true;
+
 
     private Rigidbody2D rb;
-
     [SerializeField] private Transform mob;
     [SerializeField] private float range = 5;
     [SerializeField] private float yOffsetCorrection;
     [SerializeField] private BoxCollider2D hitBox;
-    [SerializeField] private bool isHuman;
     private EnemyPatrol enemyPatrol;
-
     private bool isInArea;
+
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class ChasePlayer : MonoBehaviour
             RaycastHit2D[] hitLeft = Physics2D.RaycastAll(new Vector2(mob.position.x - hitBox.size.x , mob.position.y - yOffsetCorrection), -mob.right, range, collisionLayers);
             RaycastHit2D[] hitRight = Physics2D.RaycastAll(new Vector2(mob.position.x + hitBox.size.x, mob.position.y - yOffsetCorrection), mob.right, range, collisionLayers);
 
-            if (hitLeft != null)
+            if (hitLeft != null && canMoove)
             {
                 foreach (RaycastHit2D hit in hitLeft)
                 {
@@ -45,12 +46,14 @@ public class ChasePlayer : MonoBehaviour
                     {
                         rb.velocity = new Vector2( - chaseSpeed, 0f);
                         if (isHuman)
-                            GetComponentInChildren<Animator>().SetTrigger("Run");
+                            GetComponentInChildren<Animator>().SetBool("Run", true);
+                        if(isHuman)
+                            GetComponentInChildren<Animator>().SetBool("Idle", false);
                     }
                         
                 }
             }
-            if (hitRight != null)
+            if (hitRight != null && canMoove)
             {
                 foreach (RaycastHit2D hit in hitRight)
                 {
@@ -58,16 +61,12 @@ public class ChasePlayer : MonoBehaviour
                     {
                         rb.velocity = new Vector2(chaseSpeed, 0f);
                         if (isHuman)
-                            GetComponentInChildren<Animator>().SetTrigger("Run");
+                        {
+                            GetComponentInChildren<Animator>().SetBool("Run", true);
+                            GetComponentInChildren<Animator>().SetBool("Idle", false);
+
+                        }
                     }
-                }
-            }
-            if (isHuman)
-            {
-                if(hitLeft == null && hitRight == null)
-                {
-                    if (isHuman)
-                        GetComponentInChildren<Animator>().SetTrigger("Idle");
                 }
             }
 
@@ -92,6 +91,12 @@ public class ChasePlayer : MonoBehaviour
             rb.velocity = Vector2.zero;
             GetComponentInChildren<EnemyPatrol>().isPatrol = true;
             isInArea = false;
+
+            if (isHuman)
+            {
+                GetComponentInChildren<Animator>().SetBool("Idle", true);
+                GetComponentInChildren<Animator>().SetBool("Run", false);
+            }
         }
 
     }

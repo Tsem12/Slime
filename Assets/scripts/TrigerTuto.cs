@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class TrigerTuto : MonoBehaviour
 {
-    private bool isDone;
+    [HideInInspector] public bool isDone;
+    [SerializeField] DialogueTrigger dialogue;
+
+    private void Start()
+    {
+        if(dialogue == null)
+        {
+            dialogue = GetComponent<DialogueTrigger>();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isDone)
         {
-            GetComponent<DialogueTriger>().TrigerDialogue();
+            dialogue.TrigerDialogue();
+            isDone = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isDone = true;
-    }
 }

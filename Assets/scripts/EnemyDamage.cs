@@ -11,6 +11,7 @@ public class EnemyDamage : MonoBehaviour
     private bool isDead;
     private Rigidbody2D rb;
     private bool canAttack;
+    [SerializeField] ChasePlayer chasePlayer;
 
 
     [SerializeField] private float coolDown;
@@ -58,8 +59,10 @@ public class EnemyDamage : MonoBehaviour
     IEnumerator Damage()
     {
         isAttacking = true;
+        //chasePlayer.canMoove = false;
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(coolDown);
+        //chasePlayer.canMoove = true;
         isAttacking = false;
     }
 }

@@ -127,6 +127,7 @@ MonoBehaviour:
   - {fileID: 8989081923821619611}
   - {fileID: 0}
   graphics: {fileID: 8989081923208548856}
+  isStatic: 0
   isLeft: 0
   isDead: 0
   isPatrol: 1
@@ -255,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7f296623ebd04449001d1c596ca265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 2
+  chaseSpeed: 4
   collisionLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -263,6 +264,8 @@ MonoBehaviour:
   range: 5
   yOffsetCorrection: 0.72
   hitBox: {fileID: 8989081924547109407}
+  isHuman: 0
+  canMoove: 0
 --- !u!1 &8989081923706568718
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8989081923208548861}
-  coolDown: 2
+  chasePlayer: {fileID: 8989081923293813121}
+  coolDown: 1
 --- !u!114 &8989081923979611268
 MonoBehaviour:
   m_ObjectHideFlags: 0

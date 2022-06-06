@@ -10,10 +10,10 @@ public class BuyItems : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI costStr;
     [SerializeField] private bool isPims;
-    [SerializeField] private DialogueTriger humanDialogue;
-    [SerializeField] private DialogueTriger monsterDialogue;
-    [SerializeField] private DialogueTriger alreadyBuy;
-    [SerializeField] private DialogueTriger notEnoughMoney;
+    [SerializeField] private DialogueTrigger humanDialogue;
+    [SerializeField] private DialogueTrigger monsterDialogue;
+    [SerializeField] private DialogueTrigger alreadyBuy;
+    [SerializeField] private DialogueTrigger notEnoughMoney;
     [SerializeField] private SkinSelector skin;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject sold;

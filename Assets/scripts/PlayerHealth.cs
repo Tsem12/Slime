@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     private SwitchCharacter switchCharacter;
+    [SerializeField] GameObject healingParticule;
 
     public HealthBar healthBar;
     void Start()
@@ -40,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if(!GameManager.instance.isGodMod)
+            currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         StartCoroutine(AnimantionDamage());
         if (currentHealth <= 0)
@@ -55,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth += heal;
         healthBar.SetHealth(currentHealth);
+        StartCoroutine(Healing());
     }
 
     private IEnumerator AnimantionDamage()
@@ -67,6 +70,13 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer.enabled = false;
         yield return new WaitForSeconds(0.3f);
         spriteRenderer.enabled = true;
+    }
+
+    private IEnumerator Healing()
+    {
+        healingParticule.SetActive(true);
+        yield return new WaitForSeconds(1);
+        healingParticule.SetActive(false);
     }
 
 

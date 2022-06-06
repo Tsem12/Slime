@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3385223470674201485}
+  chasePlayer: {fileID: 7360339314573851001}
   coolDown: 2
 --- !u!114 &3392032350902215765
 MonoBehaviour:
@@ -86,13 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809bb780cd1744fd38a5717904f76631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   playerHealth: {fileID: 0}
   isFlyUnlocked: 0
   isGolemUnlocked: 0
   isHumanUnlocked: 0
-  unlockFly: {fileID: 0}
-  unlockGolem: {fileID: 0}
-  unlockHuman: {fileID: 0}
+  golemPlayer: {fileID: 0}
 --- !u!1 &3385223470313783660
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +282,7 @@ MonoBehaviour:
   - {fileID: 3385223470517344540}
   - {fileID: 3385223470313783661}
   graphics: {fileID: 3385223470674201474}
+  isStatic: 0
   isLeft: 0
   isDead: 0
   isPatrol: 1
@@ -329,7 +330,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -445,10 +446,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7f296623ebd04449001d1c596ca265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHuman: 0
   chaseSpeed: 2
   collisionLayers:
     serializedVersion: 2
     m_Bits: 64
+  canMoove: 1
   mob: {fileID: 3385223470674201486}
   range: 5
   yOffsetCorrection: 0

@@ -7,9 +7,9 @@ public class SwitchCharacter : MonoBehaviour
     [HideInInspector] public bool isFlyUnlocked;
     [HideInInspector] public bool isGolemUnlocked;
     [HideInInspector] public bool isHumanUnlocked;
-    public DialogueTriger unlockFly;
-    public DialogueTriger unlockGolem;
-    public DialogueTriger unlockHuman;
+    public DialogueTrigger unlockFly;
+    public DialogueTrigger unlockGolem;
+    public DialogueTrigger unlockHuman;
 
     public static SwitchCharacter instance;
     public List<GameObject> charList;
@@ -35,8 +35,8 @@ public class SwitchCharacter : MonoBehaviour
         previusCharacter = activeCharacter;
         previusCharacter.SetActive(false);
         activeCharacter = charList[id];
-        activeCharacter.SetActive(true);
         activeCharacter.transform.position = previusCharacter.transform.position;
+        activeCharacter.SetActive(true);
         activeCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
         GameManager.instance.isInputEnable = true;
     }

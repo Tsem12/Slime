@@ -9,19 +9,26 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
-    public bool isInputEnable = true;
-    public int pimsAmount;
-    public int moneyAmount;
+    [HideInInspector] public bool isInputEnable = true;
+    [HideInInspector] public bool isGodMod;
+    [HideInInspector] public int pimsAmount;
+    [HideInInspector] public int moneyAmount;
+    [HideInInspector] public Camera activeCamera;
 
     public TextMeshProUGUI pimsCounter;
     public TextMeshProUGUI coinCounter;
     public GameObject selectionWeel;
-    public PlayerAttack playerAttack;
-    public SwitchCharacter switchCharacter;
+    [HideInInspector] public PlayerAttack playerAttack;
     public GameObject pauseCanva;
     public GameObject deafeatCanva;
+    public GameObject tpBoss;
     [SerializeField] private GameObject miniMap;
+    [SerializeField] private GameObject godMod;
     [HideInInspector] public bool canMove;
+
+    [SerializeField] Camera mainCamera;
+    [SerializeField] GameObject humanBoss;
+    [SerializeField] GameObject golemBoss;
 
     private bool isPause = false;
 
@@ -29,6 +36,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
+
+        mainCamera = Camera.main;
 
         if (instance == null)
             instance = this;
@@ -43,14 +52,14 @@ public class GameManager : MonoBehaviour
         {
             selectionWeel.SetActive(true);
             Time.timeScale = 0.1f;
-            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
+            SwitchCharacter.instance.activeCharacter.GetComponent<PlayerAttack>().canAttack = false;
         }
 
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             selectionWeel.SetActive(false);
             Time.timeScale = 1f;
-            switchCharacter.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
+            SwitchCharacter.instance.activeCharacter.GetComponent<PlayerAttack>().canAttack = true;
         }
 
         if (isPause == false && Input.GetKeyDown(KeyCode.Escape))
@@ -67,6 +76,12 @@ public class GameManager : MonoBehaviour
             moneyAmount += 10;
             pimsAmount += 10;
         }
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            isGodMod = !isGodMod;
+            godMod.SetActive(!godMod.activeSelf);
+        }
 
         if(pimsCounter != null && coinCounter != null)
         {
@@ -74,6 +89,9 @@ public class GameManager : MonoBehaviour
             coinCounter.text = moneyAmount.ToString();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.M))
+            SwitchCharacter.instance.activeCharacter.transform.position = tpBoss.transform.position;
 
     }
 
@@ -124,6 +142,11 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             deafeatCanva.SetActive(false);
+            if (golemBoss != null)
+                golemBoss.GetComponent<BossHealth>().ResetFight();
+            if (humanBoss != null)
+                humanBoss.GetComponent<BossHumanHealth>().ResetFight();
+            activeCamera = mainCamera;
         }
 
     }

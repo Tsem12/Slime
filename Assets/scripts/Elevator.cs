@@ -6,9 +6,14 @@ public class Elevator : MonoBehaviour
 {
     public float force;
     public bool isON;
+    public int objectsToDestroy;
+    public GameObject elevatorToDesactive;
+    public bool isActive;
 
     private GameObject player;
     [SerializeField] private string direction;
+    [SerializeField] private bool needToDestroy;
+    [SerializeField] private bool needToActivate;
 
     private void Update()
     {
@@ -21,11 +26,18 @@ public class Elevator : MonoBehaviour
             GetComponent<Animator>().SetBool("IsActive", false);
         }
 
+        if (needToDestroy && objectsToDestroy == 0)
+        {
+            isON = true;
+            needToDestroy = false;
+        }
     }
+
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = SwitchCharacter.instance.activeCharacter;
 
         if (collision.CompareTag("Player") && isON == true)
         {
@@ -45,8 +57,9 @@ public class Elevator : MonoBehaviour
                     break;
 
             }
-        }
-    }
 
+        }
+
+    }
 
 }

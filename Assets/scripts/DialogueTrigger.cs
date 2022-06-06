@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueTriger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
     private SpriteRenderer spriteRenderer;
@@ -11,15 +11,20 @@ public class DialogueTriger : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        dialogue.image = spriteRenderer.sprite;
+        if(dialogue.image == null)
+            dialogue.image = spriteRenderer.sprite;
     }
 
 
 
     public void TrigerDialogue()
     {
-        DialogueManager.instance.image.color = spriteRenderer.color;
+
+        if(dialogue.image == null)
+            DialogueManager.instance.image.color = spriteRenderer.color;
+
         DialogueManager.instance.StartDialogue(dialogue, this);
+
         if (dialogue.isDialogueFix)
         {
             DialogueManager.instance.isDialogueFix = true;
@@ -59,6 +64,9 @@ public class DialogueTriger : MonoBehaviour
             case 3:
                 BossFlee();
                 break;
+            case 4:
+                HumanBossStart();
+                break;
         }
     }
 
@@ -88,10 +96,19 @@ public class DialogueTriger : MonoBehaviour
         }
     }
 
+    private void HumanBossStart()
+    {
+        GetComponent<Animator>().SetBool("BossStart", true);
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<BossHumanHealth>().isInvunerable = false;
+    }
+
     private void BossFlee()
     {
         GetComponent<Animator>().SetTrigger("Flee");
     }
+
+
 
     private IEnumerator Active(GameObject[] childrenList, bool active)
     {

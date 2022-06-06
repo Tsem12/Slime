@@ -138,6 +138,12 @@ public class BreakRock : MonoBehaviour
         {
             if (mob.GetComponentInParent<EnemyHealth>() != null)
                 mob.GetComponentInParent<EnemyHealth>().isDashed = false;
+
+            if (mob.GetComponentInParent<BossHumanHealth>() != null)
+                mob.GetComponentInParent<BossHumanHealth>().isDashed = false;
+
+            if (mob.GetComponentInParent<BossHealth>() != null)
+                mob.GetComponentInParent<BossHealth>().isDashed = false;
         }
         enemiesDashed.Clear();
     }
@@ -180,13 +186,38 @@ public class BreakRock : MonoBehaviour
             collision.GetComponent<BossHealth>().stopted = true;
         }
 
-        if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem")
+        if (collision.tag == "Fly" || collision.tag == "Human" || collision.tag == "Golem" && !collision.GetComponent<AbsorptionEnemy>().isDead)
         {
             if(collision.GetComponentInParent<EnemyHealth>().isDashed == false && chargeLvl > 0)
             {
                 enemiesDashed.Add(collision.gameObject);
-                collision.GetComponentInParent<EnemyHealth>().TakeDamage(10, 2, 2, playerMovement.direction);
-                collision.GetComponentInParent<EnemyHealth>().isDashed = true;
+
+                if (collision.GetComponent<EnemyHealth>())
+                {
+                    collision.GetComponentInParent<EnemyHealth>().TakeDamage(10, 2, 2, playerMovement.direction);
+                    collision.GetComponentInParent<EnemyHealth>().isDashed = true;
+                }
+            }
+        }
+
+        if(collision.tag == "Boss")
+        {
+            if (collision.GetComponent<BossHumanHealth>())
+            {
+                if (!collision.GetComponent<BossHumanHealth>().isDashed)
+                {
+                    collision.GetComponent<BossHumanHealth>().TakeDamage(15 * chargeLvl);
+                    collision.GetComponentInParent<BossHumanHealth>().isDashed = true;
+                }
+            }
+
+            else if (collision.GetComponent<BossHealth>())
+            {
+                if (!collision.GetComponent<BossHealth>().isDashed)
+                {
+                    collision.GetComponent<BossHealth>().TakeDamage(15 * chargeLvl);
+                    collision.GetComponentInParent<BossHealth>().isDashed = true;
+                }
             }
         }
     }
