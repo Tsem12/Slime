@@ -13,7 +13,6 @@ public class HumanAttacks : MonoBehaviour
     void Update()
     {
         player = Physics2D.OverlapCircle(atkHitBox.transform.position, range, layer);
-        
     }
 
     private void OnDrawGizmos()
@@ -24,7 +23,8 @@ public class HumanAttacks : MonoBehaviour
 
     public void LaunchCoroutine(Rigidbody2D rb, Transform target, GameObject hitBox, int kbForce)
     {
-        StartCoroutine(Knockback(rb, target, hitBox, kbForce));
+        if(!AbilitieManager.instance.resistKb)
+            StartCoroutine(Knockback(rb, target, hitBox, kbForce));
     }
 
     private IEnumerator Knockback(Rigidbody2D rb, Transform target, GameObject hitBox, int kbForce)

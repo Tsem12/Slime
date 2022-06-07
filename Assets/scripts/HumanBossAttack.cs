@@ -33,9 +33,9 @@ public class HumanBossAttack : StateMachineBehaviour
             if (humanAttacks.player.tag == "Player" && humanAttacks.canDamage && hitsCounter > 0)
             {
                 humanAttacks.canDamage = false;
+                hitsCounter --;
                 humanAttacks.player.GetComponentInParent<PlayerHealth>().TakeDamage(damage);
                 humanAttacks.LaunchCoroutine(target.GetComponent<Rigidbody2D>(), target, hitBox, kbForce);
-                hitsCounter --;
             }
         }
 

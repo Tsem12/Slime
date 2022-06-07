@@ -35,6 +35,8 @@ public class BossHealth : MonoBehaviour
             isDead = true;
             gateToActivate.isBossDefeated = true;
             GetComponent<AbsorptionEnemy>().isDead = true;
+            AudioManager.instance.UnPause("Theme");
+            AudioManager.instance.Stop("GolemFight");
         }
     }
 
@@ -50,7 +52,7 @@ public class BossHealth : MonoBehaviour
         {
             animator.SetTrigger("Regen");
             isPhase2 = true;
-            isInVulnerable = true;
+            isInVulnerable = true;          
         }
         
 

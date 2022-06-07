@@ -16,6 +16,7 @@ TagManager:
   - Human
   - Boss
   - Activable
+  - Interactable
   layers:
   - Default
   - TransparentFX

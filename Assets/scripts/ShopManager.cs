@@ -7,6 +7,7 @@ public class ShopManager : MonoBehaviour
     private BoxCollider2D boxCollider;
     [SerializeField] private DialogueTrigger humanDialogue;
     [SerializeField] private DialogueTrigger monsterDialogue;
+    [SerializeField] private GameObject indicator;
     public GameObject[] children;
     private bool canTalk;
     private bool isInShop;
@@ -57,6 +58,9 @@ public class ShopManager : MonoBehaviour
         {
             canTalk = true;
         }
+
+        if(collision.CompareTag("Player"))
+            indicator.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -64,6 +68,7 @@ public class ShopManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canTalk = false;
+            indicator.SetActive(false);
         }
     }
 }

@@ -20,8 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     public void TrigerDialogue()
     {
 
-        if(dialogue.image == null)
-            DialogueManager.instance.image.color = spriteRenderer.color;
+        DialogueManager.instance.image.color = spriteRenderer.color;
 
         DialogueManager.instance.StartDialogue(dialogue, this);
 
@@ -101,6 +100,9 @@ public class DialogueTrigger : MonoBehaviour
         GetComponent<Animator>().SetBool("BossStart", true);
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<BossHumanHealth>().isInvunerable = false;
+        AudioManager.instance.Play("HumanFight");
+        AudioManager.instance.Pause("Theme");
+
     }
 
     private void BossFlee()

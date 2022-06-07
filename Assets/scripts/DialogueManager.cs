@@ -92,10 +92,31 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator DisplayMessage(string sentence)
     {
         message.text = "";
+        bool fill = false;
+        string stocking = "";
+        int chevronLimit = 2;
         foreach(char letter in sentence.ToCharArray())
         {
-            message.text += letter;
-            yield return null;
+            if(letter == '<' || fill)
+            {
+                fill = true;
+                stocking += letter;
+                if (letter == '>')
+                    chevronLimit--;
+                if(chevronLimit == 0)
+                {
+                    message.text += stocking;
+                    stocking = "";
+                    yield return null;
+                    fill = false;
+                    chevronLimit = 2;
+                }
+            }
+            else
+            {
+                message.text += letter;
+                yield return null;
+            }
         }
     }
 

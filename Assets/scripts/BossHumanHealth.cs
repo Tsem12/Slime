@@ -32,6 +32,8 @@ public class BossHumanHealth : MonoBehaviour
             gateToActivate.isBossDefeated = true;
             GetComponent<AbsorptionEnemy>().isDead = true;
             defeate.TrigerDialogue();
+            AudioManager.instance.Stop("HumanFight");
+            AudioManager.instance.UnPause("Theme");
         }
     }
 
@@ -54,6 +56,8 @@ public class BossHumanHealth : MonoBehaviour
         healthBar.SetHealth(health);
         GetComponent<BoxCollider2D>().enabled = true;
         isInvunerable = true;
+        AudioManager.instance.Stop("HumanFight");
+        AudioManager.instance.UnPause("Theme");
     }
 
 

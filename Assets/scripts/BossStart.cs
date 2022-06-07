@@ -31,5 +31,7 @@ public class BossStart : MonoBehaviour
             yield return new WaitForSeconds(1);
             animator.SetBool("Entery", true);
             animator.SetBool("Idle", true);
+            AudioManager.instance.Play("GolemFight");
+            AudioManager.instance.Pause("Theme");
         }
 }

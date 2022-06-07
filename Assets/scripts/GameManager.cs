@@ -37,11 +37,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        mainCamera = Camera.main;
-
         if (instance == null)
             instance = this;
 
+    }
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        activeCamera = mainCamera;
     }
 
     // Update is called once per frame

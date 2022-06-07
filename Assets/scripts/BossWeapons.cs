@@ -36,7 +36,9 @@ public class BossWeapons : MonoBehaviour
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
             player.GetComponentInParent<PlayerHealth>().TakeDamage(meleeDamage);
-            StartCoroutine(Knockback(rb));
+
+            if(!AbilitieManager.instance.resistKb)
+                StartCoroutine(Knockback(rb));
         }
     }
 
