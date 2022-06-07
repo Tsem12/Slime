@@ -38,6 +38,7 @@ public class SwitchCharacter : MonoBehaviour
         activeCharacter.transform.position = previusCharacter.transform.position;
         activeCharacter.SetActive(true);
         activeCharacter.GetComponent<Animator>().SetTrigger("SwitchOut");
+        AbilitieManager.instance.UpdateUI();
         GameManager.instance.isInputEnable = true;
     }
 

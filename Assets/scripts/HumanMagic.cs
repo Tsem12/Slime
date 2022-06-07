@@ -13,8 +13,11 @@ public class HumanMagic : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && GameManager.instance.isActiveAndEnabled && canMagic)
+        if (Input.GetKeyDown(KeyCode.X) && GameManager.instance.isActiveAndEnabled && canMagic && AbilitieManager.instance.canMagic)
+        {
             animator.SetTrigger("Magic");
+            AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.HumanMagic, 3f, 0);
+        }
     }
 
     public void ActiveElement()

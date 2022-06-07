@@ -79,7 +79,9 @@ public class DialogueManager : MonoBehaviour
     {
         if(sentences.Count == 0)
         {
-            npcTriger.ChooseAction(npcTriger.dialogue.functionToExecute);
+            if(npcTriger != null)
+                npcTriger.ChooseAction(npcTriger.dialogue.functionToExecute);
+
             EndDialogue();
             return;
         }

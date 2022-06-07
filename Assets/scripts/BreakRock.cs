@@ -62,13 +62,13 @@ public class BreakRock : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && AbilitieManager.instance.canDash)
         {
             animator.SetTrigger("Charge");
             chargingParticule.SetActive(true);
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && AbilitieManager.instance.canDash)
         {
             dashCharge -= Time.deltaTime;
             GameManager.instance.isInputEnable = false;
@@ -83,13 +83,14 @@ public class BreakRock : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && AbilitieManager.instance.canDash)
         {
             if (dashCharge > 2)
             {
                 if (playerAttack.isAttacking == false && playerAttack.canAttack == true)
                 {
                     playerAttack.LauchAttack();
+                    AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemDash, 0.5f, 2);
                 }
 
             }
@@ -99,6 +100,7 @@ public class BreakRock : MonoBehaviour
                 Dash( 200f);
                 chargeLvl = 1;
                 postionCheck = this.transform.position.x;
+                AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemDash, 1.5f, 2);
             }
 
             else if (dashCharge <= 0)
@@ -106,6 +108,7 @@ public class BreakRock : MonoBehaviour
                 Dash(300f);
                 chargeLvl = 2;
                 postionCheck = this.transform.position.x;
+                AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemDash, 3f, 2);
 
             }
 

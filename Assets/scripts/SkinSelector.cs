@@ -40,6 +40,7 @@ public class SkinSelector : MonoBehaviour
     /// </summary>
     public void SelectSkin()
     {
+        AbilitieManager.instance.slimeAblitie.color = activeColor;
         SwitchCharacter.instance.ChangeCharacter(0);
         InventoryManager.instance.closeInventory = true;
         SwitchCharacter.instance.activeCharacter.GetComponent<SpriteRenderer>().color = activeColor;

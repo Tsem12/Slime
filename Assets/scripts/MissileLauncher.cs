@@ -56,7 +56,7 @@ public class MissileLauncher : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.X) && missileEnabled)
+        if (Input.GetKeyDown(KeyCode.X) && missileEnabled && AbilitieManager.instance.canMissile)
         {
             animator.SetTrigger("ChargeMissile");
             missile.SetActive(true);
@@ -67,7 +67,7 @@ public class MissileLauncher : MonoBehaviour
             GameManager.instance.isInputEnable = false;
         }
 
-        if (Input.GetKey(KeyCode.X) && missileEnabled)
+        if (Input.GetKey(KeyCode.X) && missileEnabled && AbilitieManager.instance.canMissile)
         {
             dashCharge -= Time.deltaTime;
             rb.velocity = Vector2.zero;
@@ -81,22 +81,25 @@ public class MissileLauncher : MonoBehaviour
 
         }
 
-        if (Input.GetKeyUp(KeyCode.X) && missileEnabled)
+        if (Input.GetKeyUp(KeyCode.X) && missileEnabled && AbilitieManager.instance.canMissile)
         {
             if (dashCharge > 2)
             {
                 missileBehaviour.Fire(2f,0);
+                AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemMissile, 0.5f, 3);
             }
 
             else if (dashCharge <= 2 && dashCharge > 0)
             {
                 missileBehaviour.Fire(5f, 1);
+                AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemMissile, 1.5f, 3);
             }
 
             else if (dashCharge <= 0)
             {
                 chargeLvl = 2;
                 missileBehaviour.Fire(10f, 2);
+                AbilitieManager.instance.StartCoolDownCoroutine(AbilitieManager.instance.GolemMissile, 3f, 3);
 
             }
 
